@@ -1,0 +1,40 @@
+vda1  252:1   2138029568 cirros-rootfs /
+=== cirros: current=0.6.3 latest=0.6.3 uptime=24.03 ===
+   http://cirros-cloud.net
+login as 'cirros' user. default password: 'gocubsgo'. use 'sudo' for root.
+demo-vm1 login: 
+3 packets transmitted, 0 received, 100% packet loss, time 2044ms
+
+ssh: connect to host 172.24.4.200 port 22: Connection timed out
+---
+-machine virt-8.2,usb=off,gic-version=3,dump-guest-core=off,memory-backend=mach-virt.ram,pflash0=libvirt-pflash0-format,pflash1=libvirt-pflash1-format,acpi=on
+accel=
+virt_type = kvm
+3 packets transmitted, 0 received, 100% packet loss, time 2086ms
+
+ssh: connect to host 172.24.4.200 port 22: Connection timed out
+Warning: The unit file, source configuration file or drop-ins of openstack-ext-nat.service changed on disk. Run 'systemctl daemon-reload' to reload units.
+-P POSTROUTING ACCEPT
+-A POSTROUTING -s 172.24.4.0/24 -o lima0 -j MASQUERADE
+-A POSTROUTING -s 172.24.4.0/24 -o eth0 -j MASQUERADE
+3 packets transmitted, 3 received, 0% packet loss, time 2006ms
+rtt min/avg/max/mdev = 1.355/2.158/3.486/0.945 ms
+Warning: Permanently added '172.24.4.200' (ED25519) to the list of known hosts.
+demo-vm1
+BusyBox v1.35.0 (2024-09-26 17:30:28 UTC) multi-call binary.
+
+Usage: ip [OPTIONS] address|route|link|tunnel|neigh|rule [ARGS]
+
+OPTIONS := -f[amily] inet|inet6|link | -o[neline]
+
+ip addr add|del IFADDR dev IFACE | show|flush [dev IFACE] [to PREFIX]
+ip route list|flush|add|del|change|append|replace|test ROUTE
+ip link set IFACE [up|down] [arp on|off] [multicast on|off]
+	[promisc on|off] [mtu NUM] [name NAME] [qlen NUM] [address MAC]
+	[master IFACE | nomaster] [netns PID]
+ip tunnel add|change|del|show [NAME]
+	[mode ipip|gre|sit] [remote ADDR] [local ADDR] [ttl TTL]
+ip neigh show|flush [to PREFIX] [dev DEV] [nud STATE]
+ip rule [list] | add|del SELECTOR ACTION
+vdb     252:16   0   1G  0 disk 
+rtt min/avg/max/mdev = 15.770/16.878/17.986/1.108 ms

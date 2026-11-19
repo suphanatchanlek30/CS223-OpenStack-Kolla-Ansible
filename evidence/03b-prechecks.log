@@ -1,0 +1,187 @@
+Pre-deployment checking
+[WARNING]: Invalid characters were found in group names but not replaced, use -vvvv to see details
+
+PLAY [Gather facts for all hosts] **********************************************
+
+TASK [Group hosts to determine when using --limit] *****************************
+ok: [localhost]
+
+TASK [Gather facts] ************************************************************
+[WARNING]: Could not match supplied host pattern, ignoring: all_using_limit_True
+ok: [localhost]
+
+PLAY [Gather facts for all hosts (if using --limit)] ***************************
+skipping: no hosts matched
+
+PLAY [Group hosts based on configuration] **************************************
+
+TASK [Group hosts based on Kolla action] ***************************************
+ok: [localhost]
+
+TASK [Group hosts based on enabled services] ***********************************
+ok: [localhost] => (item=enable_aodh_False)
+ok: [localhost] => (item=enable_barbican_False)
+ok: [localhost] => (item=enable_blazar_False)
+ok: [localhost] => (item=enable_ceilometer_False)
+ok: [localhost] => (item=enable_ceph_rgw_False)
+ok: [localhost] => (item=enable_cinder_True)
+ok: [localhost] => (item=enable_cloudkitty_False)
+ok: [localhost] => (item=enable_collectd_False)
+ok: [localhost] => (item=enable_cyborg_False)
+ok: [localhost] => (item=enable_designate_False)
+ok: [localhost] => (item=enable_etcd_False)
+ok: [localhost] => (item=enable_fluentd_True)
+ok: [localhost] => (item=enable_glance_True)
+ok: [localhost] => (item=enable_gnocchi_False)
+ok: [localhost] => (item=enable_grafana_False)
+ok: [localhost] => (item=enable_hacluster_False)
+ok: [localhost] => (item=enable_heat_False)
+ok: [localhost] => (item=enable_horizon_True)
+ok: [localhost] => (item=enable_ironic_False)
+ok: [localhost] => (item=enable_iscsid_True)
+ok: [localhost] => (item=enable_keystone_True)
+ok: [localhost] => (item=enable_letsencrypt_False)
+ok: [localhost] => (item=enable_loadbalancer_True)
+ok: [localhost] => (item=enable_magnum_False)
+ok: [localhost] => (item=enable_manila_False)
+ok: [localhost] => (item=enable_mariadb_True)
+ok: [localhost] => (item=enable_masakari_False)
+ok: [localhost] => (item=enable_memcached_True)
+ok: [localhost] => (item=enable_mistral_False)
+ok: [localhost] => (item=enable_multipathd_False)
+ok: [localhost] => (item=enable_neutron_True)
+ok: [localhost] => (item=enable_nova_True)
+ok: [localhost] => (item=enable_octavia_False)
+ok: [localhost] => (item=enable_opensearch_False)
+ok: [localhost] => (item=enable_opensearch_dashboards_False)
+ok: [localhost] => (item=enable_openvswitch_True_enable_ovs_dpdk_False)
+ok: [localhost] => (item=enable_ovn_False)
+ok: [localhost] => (item=enable_placement_True)
+ok: [localhost] => (item=enable_prometheus_False)
+ok: [localhost] => (item=enable_rabbitmq_True)
+ok: [localhost] => (item=enable_valkey_False)
+ok: [localhost] => (item=enable_skyline_False)
+ok: [localhost] => (item=enable_tacker_False)
+ok: [localhost] => (item=enable_trove_False)
+ok: [localhost] => (item=enable_watcher_False)
+
+PLAY [Apply role prechecks] ****************************************************
+
+TASK [prechecks : Checking loadbalancer group] *********************************
+ok: [localhost] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [prechecks : Include tasks from host_os_checks.yml] ***********************
+included: /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/prechecks/tasks/host_os_checks.yml for localhost
+
+TASK [prechecks : Checking host OS distribution] *******************************
+ok: [localhost] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [prechecks : Checking host OS release or version] *************************
+ok: [localhost] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [prechecks : Checking if CentOS is Stream] ********************************
+skipping: [localhost]
+
+TASK [prechecks : Fail if not running on CentOS Stream] ************************
+skipping: [localhost]
+
+TASK [prechecks : Include tasks from timesync_checks.yml] **********************
+skipping: [localhost]
+
+TASK [prechecks : Ensure /etc/localtime exist] *********************************
+ok: [localhost]
+
+TASK [prechecks : Fail if /etc/localtime is absent] ****************************
+skipping: [localhost]
+
+TASK [prechecks : Include tasks from port_checks.yml] **************************
+skipping: [localhost]
+
+TASK [prechecks : Checking if system uses systemd] *****************************
+ok: [localhost] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [prechecks : Checking Docker version] *************************************
+ok: [localhost]
+
+TASK [prechecks : Checking empty passwords in passwords.yml. Run kolla-genpwd if this task fails] ***
+ok: [localhost]
+
+TASK [prechecks : Check if nscd is running] ************************************
+ok: [localhost]
+
+TASK [prechecks : Fail if nscd is running] *************************************
+skipping: [localhost]
+
+TASK [prechecks : Validate that internal and external vip address are different when TLS is enabled only on either the internal and external network] ***
+skipping: [localhost]
+
+TASK [prechecks : Validate that enable_ceph is disabled] ***********************
+[WARNING]: Deprecation warnings can be disabled by setting `deprecation_warnings=False` in ansible.cfg.
+[DEPRECATION WARNING]: The `bool` filter coerced invalid value '' (str) to False. This feature will be removed from ansible-core version 2.23.
+skipping: [localhost]
+
+TASK [prechecks : Validate that enable_redis is disabled] **********************
+ok: [localhost] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [prechecks : Checking docker SDK version] *********************************
+ok: [localhost]
+
+TASK [prechecks : Checking dbus-python package] ********************************
+ok: [localhost]
+
+TASK [prechecks : Checking Ansible version] ************************************
+ok: [localhost] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [prechecks : Check if config_owner_user existed] **************************
+ok: [localhost]
+
+TASK [prechecks : Check if config_owner_group existed] *************************
+ok: [localhost]
+
+TASK [prechecks : Check if ansible user can do passwordless sudo] **************
+ok: [localhost]
+
+TASK [prechecks : Check if external mariadb hosts are reachable from the load balancer] ***
+skipping: [localhost] => (item=localhost) 
+skipping: [localhost]
+
+TASK [prechecks : Check if external database address is reachable from all hosts] ***
+skipping: [localhost]
+
+TASK [prechecks : Check if using quay.io/openstack.kolla images] ***************
+[ERROR]: Task failed: Action failed: Kolla images from quay.io/openstack.kolla namespace are meant only for testing purposes, if you want to continue using them please use --use-test-images CLI argument
+Origin: /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/prechecks/tasks/registry_checks.yml:2:3
+
+1 ---
+2 - name: Check if using quay.io/openstack.kolla images
+    ^ column 3
+
+fatal: [localhost]: FAILED! => {
+    "assertion": "not (docker_registry == \"quay.io\" and docker_namespace == \"openstack.kolla\")",
+    "changed": false,
+    "evaluated_to": false,
+    "msg": "Kolla images from quay.io/openstack.kolla namespace are meant only for testing purposes, if you want to continue using them please use --use-test-images CLI argument"
+}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=20   changed=0    unreachable=0    failed=1    skipped=10   rescued=0    ignored=0   
+
+Kolla Ansible playbook(s) /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/site.yml exited 2

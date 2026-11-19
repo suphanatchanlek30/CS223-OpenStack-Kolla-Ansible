@@ -1,0 +1,272 @@
++ RELEASE=2026.1
+++ ip -4 -br addr show lima0
+++ awk '{print $3}'
+++ cut -d/ -f1
++ MGMT_IP=192.168.64.2
++ python3 -m venv /home/suphanatchanlek.guest/kolla-venv
++ source /home/suphanatchanlek.guest/kolla-venv/bin/activate
+++ deactivate nondestructive
+++ '[' -n '' ']'
+++ '[' -n '' ']'
+++ hash -r
+++ '[' -n '' ']'
+++ unset VIRTUAL_ENV
+++ unset VIRTUAL_ENV_PROMPT
+++ '[' '!' nondestructive = nondestructive ']'
+++ '[' linux-gnu = cygwin ']'
+++ '[' linux-gnu = msys ']'
+++ export VIRTUAL_ENV=/home/suphanatchanlek.guest/kolla-venv
+++ VIRTUAL_ENV=/home/suphanatchanlek.guest/kolla-venv
+++ _OLD_VIRTUAL_PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/sbin:/sbin
+++ PATH=/home/suphanatchanlek.guest/kolla-venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/sbin:/sbin
+++ export PATH
+++ '[' -n '' ']'
+++ '[' -z '' ']'
+++ _OLD_VIRTUAL_PS1=
+++ PS1='(kolla-venv) '
+++ export PS1
+++ VIRTUAL_ENV_PROMPT='(kolla-venv) '
+++ export VIRTUAL_ENV_PROMPT
+++ hash -r
++ pip install -U pip
+Requirement already satisfied: pip in /home/suphanatchanlek.guest/kolla-venv/lib/python3.12/site-packages (24.0)
+Collecting pip
+  Downloading pip-26.3-py3-none-any.whl.metadata (4.6 kB)
+Downloading pip-26.3-py3-none-any.whl (2.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 3.2 MB/s eta 0:00:00
+Installing collected packages: pip
+  Attempting uninstall: pip
+    Found existing installation: pip 24.0
+    Uninstalling pip-24.0:
+      Successfully uninstalled pip-24.0
+Successfully installed pip-26.3
++ pip install git+https://opendev.org/openstack/kolla-ansible@stable/2026.1
+Collecting git+https://opendev.org/openstack/kolla-ansible@stable/2026.1
+  Cloning https://opendev.org/openstack/kolla-ansible (to revision stable/2026.1) to ./pip-req-build-qlofv_sx
+  Running command git clone --filter=blob:none --quiet https://opendev.org/openstack/kolla-ansible /tmp/pip-req-build-qlofv_sx
+  Running command git checkout -b stable/2026.1 --track origin/stable/2026.1
+  Resolved https://opendev.org/openstack/kolla-ansible to commit 51f57ee3df07bc8dd61bee5d9b2899ab755d243b
+  Switched to a new branch 'stable/2026.1'
+  branch 'stable/2026.1' set up to track 'origin/stable/2026.1'.
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Installing backend dependencies: started
+  Installing backend dependencies: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting bcrypt>=4.3.0 (from kolla-ansible==22.2.1.dev36)
+  Downloading bcrypt-5.0.0-cp39-abi3-manylinux_2_34_aarch64.whl.metadata (10 kB)
+Collecting cryptography>=2.1 (from kolla-ansible==22.2.1.dev36)
+  Downloading cryptography-50.0.2-cp311-abi3-manylinux_2_34_aarch64.whl.metadata (4.4 kB)
+Collecting hvac>=0.10.1 (from kolla-ansible==22.2.1.dev36)
+  Downloading hvac-2.4.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting Jinja2>=3 (from kolla-ansible==22.2.1.dev36)
+  Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting ansible-core!=2.19.0,<2.21,>=2.19 (from kolla-ansible==22.2.1.dev36)
+  Downloading ansible_core-2.20.11-py3-none-any.whl.metadata (7.7 kB)
+Collecting jmespath>=0.9.3 (from kolla-ansible==22.2.1.dev36)
+  Downloading jmespath-1.1.0-py3-none-any.whl.metadata (7.6 kB)
+Collecting oslo.config>=5.2.0 (from kolla-ansible==22.2.1.dev36)
+  Downloading oslo_config-10.8.1-py3-none-any.whl.metadata (2.5 kB)
+Collecting oslo.utils>=3.33.0 (from kolla-ansible==22.2.1.dev36)
+  Downloading oslo_utils-10.3.0-py3-none-any.whl.metadata (2.2 kB)
+Collecting cliff>=4.7.0 (from kolla-ansible==22.2.1.dev36)
+  Downloading cliff-4.17.0-py3-none-any.whl.metadata (2.2 kB)
+Collecting PyYAML>=5.1 (from ansible-core!=2.19.0,<2.21,>=2.19->kolla-ansible==22.2.1.dev36)
+  Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (2.4 kB)
+Collecting packaging (from ansible-core!=2.19.0,<2.21,>=2.19->kolla-ansible==22.2.1.dev36)
+  Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+Collecting resolvelib<2.0.0,>=0.8.0 (from ansible-core!=2.19.0,<2.21,>=2.19->kolla-ansible==22.2.1.dev36)
+  Downloading resolvelib-1.2.1-py3-none-any.whl.metadata (3.7 kB)
+Collecting autopage>=0.4.0 (from cliff>=4.7.0->kolla-ansible==22.2.1.dev36)
+  Downloading autopage-0.6.0-py3-none-any.whl.metadata (8.1 kB)
+Collecting cmd2>=4.0.0 (from cliff>=4.7.0->kolla-ansible==22.2.1.dev36)
+  Downloading cmd2-4.4.2-py3-none-any.whl.metadata (20 kB)
+Collecting PrettyTable>=0.7.2 (from cliff>=4.7.0->kolla-ansible==22.2.1.dev36)
+  Downloading prettytable-3.18.0-py3-none-any.whl.metadata (37 kB)
+Collecting stevedore>=5.6.0 (from cliff>=4.7.0->kolla-ansible==22.2.1.dev36)
+  Downloading stevedore-5.10.0-py3-none-any.whl.metadata (2.3 kB)
+Collecting prompt-toolkit>=3.0.53 (from cmd2>=4.0.0->cliff>=4.7.0->kolla-ansible==22.2.1.dev36)
+  Downloading prompt_toolkit-3.0.53-py3-none-any.whl.metadata (6.4 kB)
+Collecting pyperclip>=1.8.2 (from cmd2>=4.0.0->cliff>=4.7.0->kolla-ansible==22.2.1.dev36)
+  Downloading pyperclip-1.11.0-py3-none-any.whl.metadata (2.4 kB)
+Collecting rich>=15.0.0 (from cmd2>=4.0.0->cliff>=4.7.0->kolla-ansible==22.2.1.dev36)
+  Downloading rich-15.0.0-py3-none-any.whl.metadata (18 kB)
+Collecting rich-argparse>=1.7.2 (from cmd2>=4.0.0->cliff>=4.7.0->kolla-ansible==22.2.1.dev36)
+  Downloading rich_argparse-1.8.0-py3-none-any.whl.metadata (15 kB)
+Collecting cffi>=2.0.0 (from cryptography>=2.1->kolla-ansible==22.2.1.dev36)
+  Downloading cffi-2.1.1-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.whl.metadata (2.5 kB)
+Collecting pycparser (from cffi>=2.0.0->cryptography>=2.1->kolla-ansible==22.2.1.dev36)
+  Downloading pycparser-3.12-py3-none-any.whl.metadata (9.7 kB)
+Collecting requests<3.0.0,>=2.27.1 (from hvac>=0.10.1->kolla-ansible==22.2.1.dev36)
+  Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+Collecting charset_normalizer<4,>=2 (from requests<3.0.0,>=2.27.1->hvac>=0.10.1->kolla-ansible==22.2.1.dev36)
+  Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (46 kB)
+Collecting idna<4,>=2.5 (from requests<3.0.0,>=2.27.1->hvac>=0.10.1->kolla-ansible==22.2.1.dev36)
+  Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+Collecting urllib3<3,>=1.26 (from requests<3.0.0,>=2.27.1->hvac>=0.10.1->kolla-ansible==22.2.1.dev36)
+  Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+Collecting certifi>=2023.5.7 (from requests<3.0.0,>=2.27.1->hvac>=0.10.1->kolla-ansible==22.2.1.dev36)
+  Downloading certifi-2026.10.23-py3-none-any.whl.metadata (2.5 kB)
+Collecting MarkupSafe>=2.0 (from Jinja2>=3->kolla-ansible==22.2.1.dev36)
+  Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (2.7 kB)
+Collecting pbr>=2.0.0 (from oslo.config>=5.2.0->kolla-ansible==22.2.1.dev36)
+  Using cached pbr-7.1.3-py2.py3-none-any.whl.metadata (4.1 kB)
+Collecting netaddr>=0.7.18 (from oslo.config>=5.2.0->kolla-ansible==22.2.1.dev36)
+  Downloading netaddr-1.3.0-py3-none-any.whl.metadata (5.0 kB)
+Collecting oslo.i18n>=3.15.3 (from oslo.config>=5.2.0->kolla-ansible==22.2.1.dev36)
+  Downloading oslo_i18n-6.9.0-py3-none-any.whl.metadata (2.0 kB)
+Collecting rfc3986>=1.2.0 (from oslo.config>=5.2.0->kolla-ansible==22.2.1.dev36)
+  Downloading rfc3986-2.0.0-py2.py3-none-any.whl.metadata (6.6 kB)
+Collecting typing-extensions>=4.11.0 (from oslo.config>=5.2.0->kolla-ansible==22.2.1.dev36)
+  Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting iso8601>=0.1.11 (from oslo.utils>=3.33.0->kolla-ansible==22.2.1.dev36)
+  Downloading iso8601-2.1.0-py3-none-any.whl.metadata (3.7 kB)
+Collecting pyparsing>=3.0.0 (from oslo.utils>=3.33.0->kolla-ansible==22.2.1.dev36)
+  Downloading pyparsing-3.3.3-py3-none-any.whl.metadata (5.9 kB)
+Collecting psutil>=3.2.2 (from oslo.utils>=3.33.0->kolla-ansible==22.2.1.dev36)
+  Downloading psutil-7.2.2-cp36-abi3-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (22 kB)
+Collecting setuptools (from pbr>=2.0.0->oslo.config>=5.2.0->kolla-ansible==22.2.1.dev36)
+  Using cached setuptools-84.2.1-py3-none-any.whl.metadata (6.6 kB)
+Collecting wcwidth>=0.3.5 (from PrettyTable>=0.7.2->cliff>=4.7.0->kolla-ansible==22.2.1.dev36)
+  Downloading wcwidth-0.9.4-cp310-abi3-manylinux2014_aarch64.manylinux_2_17_aarch64.whl.metadata (23 kB)
+Collecting markdown-it-py>=2.2.0 (from rich>=15.0.0->cmd2>=4.0.0->cliff>=4.7.0->kolla-ansible==22.2.1.dev36)
+  Downloading markdown_it_py-4.3.0-py3-none-any.whl.metadata (7.9 kB)
+Collecting pygments<3.0.0,>=2.13.0 (from rich>=15.0.0->cmd2>=4.0.0->cliff>=4.7.0->kolla-ansible==22.2.1.dev36)
+  Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich>=15.0.0->cmd2>=4.0.0->cliff>=4.7.0->kolla-ansible==22.2.1.dev36)
+  Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+Downloading ansible_core-2.20.11-py3-none-any.whl (2.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.4/2.4 MB 7.1 MB/s  0:00:00
+Downloading resolvelib-1.2.1-py3-none-any.whl (18 kB)
+Downloading bcrypt-5.0.0-cp39-abi3-manylinux_2_34_aarch64.whl (275 kB)
+Downloading cliff-4.17.0-py3-none-any.whl (88 kB)
+Downloading autopage-0.6.0-py3-none-any.whl (30 kB)
+Downloading cmd2-4.4.2-py3-none-any.whl (213 kB)
+Downloading cryptography-50.0.2-cp311-abi3-manylinux_2_34_aarch64.whl (4.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.7/4.7 MB 19.7 MB/s  0:00:00
+Downloading cffi-2.1.1-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.whl (222 kB)
+Downloading hvac-2.4.0-py3-none-any.whl (155 kB)
+Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (246 kB)
+Downloading idna-3.20-py3-none-any.whl (69 kB)
+Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+Downloading certifi-2026.10.23-py3-none-any.whl (135 kB)
+Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+Downloading jmespath-1.1.0-py3-none-any.whl (20 kB)
+Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (24 kB)
+Downloading oslo_config-10.8.1-py3-none-any.whl (145 kB)
+Downloading netaddr-1.3.0-py3-none-any.whl (2.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.3/2.3 MB 17.3 MB/s  0:00:00
+Downloading oslo_i18n-6.9.0-py3-none-any.whl (47 kB)
+Downloading oslo_utils-10.3.0-py3-none-any.whl (154 kB)
+Downloading iso8601-2.1.0-py3-none-any.whl (7.5 kB)
+Downloading packaging-26.3-py3-none-any.whl (129 kB)
+Using cached pbr-7.1.3-py2.py3-none-any.whl (136 kB)
+Downloading prettytable-3.18.0-py3-none-any.whl (37 kB)
+Downloading prompt_toolkit-3.0.53-py3-none-any.whl (392 kB)
+Downloading psutil-7.2.2-cp36-abi3-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (156 kB)
+Downloading pyparsing-3.3.3-py3-none-any.whl (126 kB)
+Downloading pyperclip-1.11.0-py3-none-any.whl (11 kB)
+Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (775 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 775.1/775.1 kB 34.1 MB/s  0:00:00
+Downloading rfc3986-2.0.0-py2.py3-none-any.whl (31 kB)
+Downloading rich-15.0.0-py3-none-any.whl (310 kB)
+Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 31.6 MB/s  0:00:00
+Downloading markdown_it_py-4.3.0-py3-none-any.whl (96 kB)
+Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Downloading rich_argparse-1.8.0-py3-none-any.whl (25 kB)
+Downloading stevedore-5.10.0-py3-none-any.whl (56 kB)
+Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Downloading wcwidth-0.9.4-cp310-abi3-manylinux2014_aarch64.manylinux_2_17_aarch64.whl (789 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 789.0/789.0 kB 31.2 MB/s  0:00:00
+Downloading pycparser-3.12-py3-none-any.whl (62 kB)
+Using cached setuptools-84.2.1-py3-none-any.whl (876 kB)
+Building wheels for collected packages: kolla-ansible
+  Building wheel for kolla-ansible (pyproject.toml): started
+  Building wheel for kolla-ansible (pyproject.toml): finished with status 'done'
+  Created wheel for kolla-ansible: filename=kolla_ansible-22.2.1.dev36-py3-none-any.whl size=1380012 sha256=b904f175df157083fe5e2c6c0a4b08405b10f7f8614c18378845de50844f7204
+  Stored in directory: /tmp/pip-ephem-wheel-cache-zytmmbft/wheels/82/72/43/be48971e9a923ca90d835af670a4f80349b0f330faed197248
+Successfully built kolla-ansible
+Installing collected packages: pyperclip, wcwidth, urllib3, typing-extensions, stevedore, setuptools, rfc3986, resolvelib, PyYAML, pyparsing, pygments, pycparser, psutil, packaging, netaddr, mdurl, MarkupSafe, jmespath, iso8601, idna, charset_normalizer, certifi, bcrypt, autopage, requests, prompt-toolkit, PrettyTable, pbr, markdown-it-py, Jinja2, cffi, rich, oslo.i18n, hvac, cryptography, rich-argparse, oslo.utils, oslo.config, ansible-core, cmd2, cliff, kolla-ansible
+
+Successfully installed Jinja2-3.1.6 MarkupSafe-3.0.4 PrettyTable-3.18.0 PyYAML-6.0.3 ansible-core-2.20.11 autopage-0.6.0 bcrypt-5.0.0 certifi-2026.10.23 cffi-2.1.1 charset_normalizer-3.5.2 cliff-4.17.0 cmd2-4.4.2 cryptography-50.0.2 hvac-2.4.0 idna-3.20 iso8601-2.1.0 jmespath-1.1.0 kolla-ansible-22.2.1.dev36 markdown-it-py-4.3.0 mdurl-0.1.2 netaddr-1.3.0 oslo.config-10.8.1 oslo.i18n-6.9.0 oslo.utils-10.3.0 packaging-26.3 pbr-7.1.3 prompt-toolkit-3.0.53 psutil-7.2.2 pycparser-3.12 pygments-2.21.0 pyparsing-3.3.3 pyperclip-1.11.0 requests-2.34.2 resolvelib-1.2.1 rfc3986-2.0.0 rich-15.0.0 rich-argparse-1.8.0 setuptools-84.2.1 stevedore-5.10.0 typing-extensions-4.16.0 urllib3-2.8.0 wcwidth-0.9.4
++ sudo mkdir -p /etc/kolla
++ sudo chown suphanatchanlek:suphanatchanlek /etc/kolla
++ cp -n -r /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/etc_examples/kolla/globals.yml /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/etc_examples/kolla/passwords.yml /etc/kolla/
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
++ cp -n /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/inventory/all-in-one /home/suphanatchanlek.guest/all-in-one
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
++ kolla-ansible install-deps
+Installing Ansible Galaxy dependencies
+Cloning into '/home/suphanatchanlek.guest/.ansible/tmp/ansible-local-3655fmkhbuob/tmpvi3v6ffj/ansible-collection-kollao9hx20_s'...
+branch 'stable/2026.1' set up to track 'origin/stable/2026.1'.
+Switched to a new branch 'stable/2026.1'
+Starting galaxy collection install process
+Process install dependency map
+Starting collection install process
+Installing 'openstack.kolla:1.0.0' to '/home/suphanatchanlek.guest/.ansible/collections/ansible_collections/openstack/kolla'
+Created collection for openstack.kolla:1.0.0 at /home/suphanatchanlek.guest/.ansible/collections/ansible_collections/openstack/kolla
+openstack.kolla:1.0.0 was installed successfully
+Starting galaxy collection install process
+Process install dependency map
+Starting collection install process
+Downloading https://galaxy.ansible.com/api/v3/plugin/ansible/content/published/collections/artifacts/ansible-netcommon-8.8.0.tar.gz to /home/suphanatchanlek.guest/.ansible/tmp/ansible-local-3669q5gcan1s/tmpza62u8oy/ansible-netcommon-8.8.0-w7in2zid
+Installing 'ansible.netcommon:8.8.0' to '/home/suphanatchanlek.guest/.ansible/collections/ansible_collections/ansible/netcommon'
+ansible.netcommon:8.8.0 was installed successfully
+Downloading https://galaxy.ansible.com/api/v3/plugin/ansible/content/published/collections/artifacts/ansible-posix-2.2.2.tar.gz to /home/suphanatchanlek.guest/.ansible/tmp/ansible-local-3669q5gcan1s/tmpza62u8oy/ansible-posix-2.2.2-u6fozpvc
+Installing 'ansible.posix:2.2.2' to '/home/suphanatchanlek.guest/.ansible/collections/ansible_collections/ansible/posix'
+ansible.posix:2.2.2 was installed successfully
+Downloading https://galaxy.ansible.com/api/v3/plugin/ansible/content/published/collections/artifacts/ansible-utils-6.1.1.tar.gz to /home/suphanatchanlek.guest/.ansible/tmp/ansible-local-3669q5gcan1s/tmpza62u8oy/ansible-utils-6.1.1-almo8c3a
+Installing 'ansible.utils:6.1.1' to '/home/suphanatchanlek.guest/.ansible/collections/ansible_collections/ansible/utils'
+ansible.utils:6.1.1 was installed successfully
+Downloading https://galaxy.ansible.com/api/v3/plugin/ansible/content/published/collections/artifacts/community-crypto-3.5.1.tar.gz to /home/suphanatchanlek.guest/.ansible/tmp/ansible-local-3669q5gcan1s/tmpza62u8oy/community-crypto-3.5.1-f_2dgt24
+Installing 'community.crypto:3.5.1' to '/home/suphanatchanlek.guest/.ansible/collections/ansible_collections/community/crypto'
+community.crypto:3.5.1 was installed successfully
+Downloading https://galaxy.ansible.com/api/v3/plugin/ansible/content/published/collections/artifacts/community-general-11.4.10.tar.gz to /home/suphanatchanlek.guest/.ansible/tmp/ansible-local-3669q5gcan1s/tmpza62u8oy/community-general-11.4.10-ynl8eea_
+Installing 'community.general:11.4.10' to '/home/suphanatchanlek.guest/.ansible/collections/ansible_collections/community/general'
+community.general:11.4.10 was installed successfully
+Downloading https://galaxy.ansible.com/api/v3/plugin/ansible/content/published/collections/artifacts/community-docker-4.8.9.tar.gz to /home/suphanatchanlek.guest/.ansible/tmp/ansible-local-3669q5gcan1s/tmpza62u8oy/community-docker-4.8.9-bej0mjv1
+Installing 'community.docker:4.8.9' to '/home/suphanatchanlek.guest/.ansible/collections/ansible_collections/community/docker'
+community.docker:4.8.9 was installed successfully
+Downloading https://galaxy.ansible.com/api/v3/plugin/ansible/content/published/collections/artifacts/containers-podman-1.21.2.tar.gz to /home/suphanatchanlek.guest/.ansible/tmp/ansible-local-3669q5gcan1s/tmpza62u8oy/containers-podman-1.21.2-ncxwbggh
+Installing 'containers.podman:1.21.2' to '/home/suphanatchanlek.guest/.ansible/collections/ansible_collections/containers/podman'
+containers.podman:1.21.2 was installed successfully
+Downloading https://galaxy.ansible.com/api/v3/plugin/ansible/content/published/collections/artifacts/community-library_inventory_filtering_v1-1.1.5.tar.gz to /home/suphanatchanlek.guest/.ansible/tmp/ansible-local-3669q5gcan1s/tmpza62u8oy/community-library_inventory_filtering_v1-1.1.5-x8_r6hb2
+Installing 'community.library_inventory_filtering_v1:1.1.5' to '/home/suphanatchanlek.guest/.ansible/collections/ansible_collections/community/library_inventory_filtering_v1'
+community.library_inventory_filtering_v1:1.1.5 was installed successfully
++ kolla-genpwd
+WARNING: Passwords file "/etc/kolla/passwords.yml" is world-readable. The permissions will be changed.
++ cat
++ sudo vgs cinder-volumes
++ sudo truncate -s 40G /var/lib/cinder-volumes.img
+++ sudo losetup -f --show /var/lib/cinder-volumes.img
++ LOOP=/dev/loop0
++ sudo pvcreate /dev/loop0
+  Physical volume "/dev/loop0" successfully created.
++ sudo vgcreate cinder-volumes /dev/loop0
+  Volume group "cinder-volumes" successfully created
++ sudo tee /etc/systemd/system/cinder-loop.service
++ sudo systemctl daemon-reload
++ sudo systemctl enable cinder-loop.service
+Created symlink /etc/systemd/system/multi-user.target.wants/cinder-loop.service → /etc/systemd/system/cinder-loop.service.
++ cat
++ grep -v '^#' /etc/kolla/globals.yml
++ grep -v '^$'
+---
+workaround_ansible_issue_8743: true
+kolla_base_distro: "ubuntu"
+openstack_release: "2026.1"
+openstack_tag_suffix: "-aarch64"          # ARM64 images on quay.io
+network_interface: "lima0"                # management/API network
+neutron_external_interface: "veth-ovs"    # external (provider) network for floating IPs
+kolla_internal_vip_address: "192.168.64.2"  # single node: VIP = host IP
+enable_haproxy: "no"                      # no load balancer/keepalived needed for 1 node
+nova_compute_virt_type: "kvm"             # /dev/kvm exists (nested virtualization on M5)
+enable_cinder: "yes"
+enable_cinder_backend_lvm: "yes"
+cinder_volume_group: "cinder-volumes"
+enable_heat: "no"

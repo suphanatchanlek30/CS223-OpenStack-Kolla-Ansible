@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Course documents, report and presentation (kept local only)
+report/
+slides/
+docs/*.pdf
+docs/PLAN_*.md
+
+# Secrets (never commit real credentials)
+passwords.yml
+admin-openrc.sh
+*.pem
+*.key
+.env

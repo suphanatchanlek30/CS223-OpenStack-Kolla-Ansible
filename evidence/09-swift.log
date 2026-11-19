@@ -1,0 +1,68 @@
++ source /home/suphanatchanlek.guest/kolla-venv/bin/activate
+++ deactivate nondestructive
+++ '[' -n '' ']'
+++ '[' -n '' ']'
+++ hash -r
+++ '[' -n '' ']'
+++ unset VIRTUAL_ENV
+++ unset VIRTUAL_ENV_PROMPT
+++ '[' '!' nondestructive = nondestructive ']'
+++ '[' linux-gnu = cygwin ']'
+++ '[' linux-gnu = msys ']'
+++ export VIRTUAL_ENV=/home/suphanatchanlek.guest/kolla-venv
+++ VIRTUAL_ENV=/home/suphanatchanlek.guest/kolla-venv
+++ _OLD_VIRTUAL_PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/sbin:/sbin:/usr/sbin:/sbin
+++ PATH=/home/suphanatchanlek.guest/kolla-venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/sbin:/sbin:/usr/sbin:/sbin
+++ export PATH
+++ '[' -n '' ']'
+++ '[' -z '' ']'
+++ _OLD_VIRTUAL_PS1=
+++ PS1='(kolla-venv) '
+++ export PS1
+++ VIRTUAL_ENV_PROMPT='(kolla-venv) '
+++ export VIRTUAL_ENV_PROMPT
+++ hash -r
++ source /etc/kolla/admin-openrc.sh
++++ set
++++ awk '{FS="="}  /^OS_/ {print $1}'
+++ export OS_PROJECT_DOMAIN_NAME=Default
+++ OS_PROJECT_DOMAIN_NAME=Default
+++ export OS_USER_DOMAIN_NAME=Default
+++ OS_USER_DOMAIN_NAME=Default
+++ export OS_PROJECT_NAME=admin
+++ OS_PROJECT_NAME=admin
+++ export OS_TENANT_NAME=admin
+++ OS_TENANT_NAME=admin
+++ export OS_USERNAME=admin
+++ OS_USERNAME=admin
+++ export OS_PASSWORD=<REDACTED>
+++ OS_PASSWORD=<REDACTED>
+++ export OS_AUTH_URL=http://192.168.64.2:5000
+++ OS_AUTH_URL=http://192.168.64.2:5000
+++ export OS_INTERFACE=internal
+++ OS_INTERFACE=internal
+++ export OS_ENDPOINT_TYPE=internalURL
+++ OS_ENDPOINT_TYPE=internalURL
+++ export OS_IDENTITY_API_VERSION=3
+++ OS_IDENTITY_API_VERSION=3
+++ export OS_REGION_NAME=RegionOne
+++ OS_REGION_NAME=RegionOne
+++ export OS_AUTH_PLUGIN=password
+++ OS_AUTH_PLUGIN=password
+++ ip -4 -br addr show lima0
+++ awk '{print $3}'
+++ cut -d/ -f1
++ IP=192.168.64.2
++ PORT=8080
+++ openssl rand -hex 12
++ SWIFT_PASS=<REDACTED>
++ ss -ltn
++ grep -q ':8080 '
+port 8080 already used
++ echo 'port 8080 already used'
++ exit 1
+
+active
+active
+active
+active

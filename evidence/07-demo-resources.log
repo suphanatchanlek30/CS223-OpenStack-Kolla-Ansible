@@ -1,0 +1,499 @@
++ source /home/suphanatchanlek.guest/kolla-venv/bin/activate
+++ deactivate nondestructive
+++ '[' -n '' ']'
+++ '[' -n '' ']'
+++ hash -r
+++ '[' -n '' ']'
+++ unset VIRTUAL_ENV
+++ unset VIRTUAL_ENV_PROMPT
+++ '[' '!' nondestructive = nondestructive ']'
+++ '[' linux-gnu = cygwin ']'
+++ '[' linux-gnu = msys ']'
+++ export VIRTUAL_ENV=/home/suphanatchanlek.guest/kolla-venv
+++ VIRTUAL_ENV=/home/suphanatchanlek.guest/kolla-venv
+++ _OLD_VIRTUAL_PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/sbin:/sbin:/usr/sbin:/sbin
+++ PATH=/home/suphanatchanlek.guest/kolla-venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/sbin:/sbin:/usr/sbin:/sbin
+++ export PATH
+++ '[' -n '' ']'
+++ '[' -z '' ']'
+++ _OLD_VIRTUAL_PS1=
+++ PS1='(kolla-venv) '
+++ export PS1
+++ VIRTUAL_ENV_PROMPT='(kolla-venv) '
+++ export VIRTUAL_ENV_PROMPT
+++ hash -r
++ source /etc/kolla/admin-openrc.sh
++++ set
++++ awk '{FS="="}  /^OS_/ {print $1}'
+++ export OS_PROJECT_DOMAIN_NAME=Default
+++ OS_PROJECT_DOMAIN_NAME=Default
+++ export OS_USER_DOMAIN_NAME=Default
+++ OS_USER_DOMAIN_NAME=Default
+++ export OS_PROJECT_NAME=admin
+++ OS_PROJECT_NAME=admin
+++ export OS_TENANT_NAME=admin
+++ OS_TENANT_NAME=admin
+++ export OS_USERNAME=admin
+++ OS_USERNAME=admin
+++ export OS_PASSWORD=<REDACTED>
+++ OS_PASSWORD=<REDACTED>
+++ export OS_AUTH_URL=http://192.168.64.2:5000
+++ OS_AUTH_URL=http://192.168.64.2:5000
+++ export OS_INTERFACE=internal
+++ OS_INTERFACE=internal
+++ export OS_ENDPOINT_TYPE=internalURL
+++ OS_ENDPOINT_TYPE=internalURL
+++ export OS_IDENTITY_API_VERSION=3
+++ OS_IDENTITY_API_VERSION=3
+++ export OS_REGION_NAME=RegionOne
+++ OS_REGION_NAME=RegionOne
+++ export OS_AUTH_PLUGIN=password
+++ OS_AUTH_PLUGIN=password
++ openstack project show demo-project
++ openstack project create --description 'CS223 demo' demo-project
++-------------+----------------------------------+
+| Field       | Value                            |
++-------------+----------------------------------+
+| description | CS223 demo                       |
+| domain_id   | default                          |
+| enabled     | True                             |
+| id          | 0b78ef00d5bc4a62affb748c8dba428f |
+| is_domain   | False                            |
+| name        | demo-project                     |
+| options     | {}                               |
+| parent_id   | default                          |
+| tags        | []                               |
++-------------+----------------------------------+
++ openstack user show demo-user
++ openstack user create --project demo-project --password <REDACTED> demo-user
++---------------------+----------------------------------+
+| Field               | Value                            |
++---------------------+----------------------------------+
+| default_project_id  | 0b78ef00d5bc4a62affb748c8dba428f |
+| domain_id           | default                          |
+| email               | None                             |
+| enabled             | True                             |
+| id                  | f88427afbf5d4772916e51661ede989b |
+| name                | demo-user                        |
+| description         | None                             |
+| password_expires_at | None                             |
+| options             | {}                               |
++---------------------+----------------------------------+
++ openstack role add --project demo-project --user demo-user member
++ openstack role add --project demo-project --user admin admin
++ cd /home/suphanatchanlek.guest
++ '[' -f cirros-0.6.3-aarch64-disk.img ']'
++ wget -q https://download.cirros-cloud.net/0.6.3/cirros-0.6.3-aarch64-disk.img
++ openstack image show cirros-aarch64
++ openstack image create cirros-aarch64 --file cirros-0.6.3-aarch64-disk.img --disk-format qcow2 --container-format bare --public --property hw_firmware_type=uefi --property os_distro=cirros --property hw_architecture=aarch64
++------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Field            | Value                                                                                                                                                                                                                                                                                                                                                                                                              |
++------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| checksum         | 28009b5399ef386f7720258de40d43cf                                                                                                                                                                                                                                                                                                                                                                                   |
+| container_format | bare                                                                                                                                                                                                                                                                                                                                                                                                               |
+| created_at       | 2026-11-15T15:55:24Z                                                                                                                                                                                                                                                                                                                                                                                               |
+| disk_format      | qcow2                                                                                                                                                                                                                                                                                                                                                                                                              |
+| file             | /v2/images/a3a1fcd3-30ad-4c10-9ea9-c7a13f9b0ec7/file                                                                                                                                                                                                                                                                                                                                                               |
+| id               | a3a1fcd3-30ad-4c10-9ea9-c7a13f9b0ec7                                                                                                                                                                                                                                                                                                                                                                               |
+| min_disk         | 0                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| min_ram          | 0                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| name             | cirros-aarch64                                                                                                                                                                                                                                                                                                                                                                                                     |
+| owner            | f98dd16f314e454180ef12f1a064acc3                                                                                                                                                                                                                                                                                                                                                                                   |
+| properties       | hw_architecture='aarch64', hw_firmware_type='uefi', os_distro='cirros', os_hash_algo='sha512', os_hash_value='3ffe92bcb75c2c586d94c044533c7737f534361aea2987094ac256eaf2e0150b59ad8a1d810c397ea7d960297ebe4b4e22c569ff2f4d6e27a06c0b79a3132ac9', os_hidden='False', owner_specified.openstack.md5='', owner_specified.openstack.object='images/cirros-aarch64', owner_specified.openstack.sha256='', stores='file' |
+| protected        | False                                                                                                                                                                                                                                                                                                                                                                                                              |
+| schema           | /v2/schemas/image                                                                                                                                                                                                                                                                                                                                                                                                  |
+| size             | 25166336                                                                                                                                                                                                                                                                                                                                                                                                           |
+| status           | active                                                                                                                                                                                                                                                                                                                                                                                                             |
+| tags             |                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| updated_at       | 2026-11-15T15:55:24Z                                                                                                                                                                                                                                                                                                                                                                                               |
+| virtual_size     | 117440512                                                                                                                                                                                                                                                                                                                                                                                                          |
+| visibility       | public                                                                                                                                                                                                                                                                                                                                                                                                             |
++------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++ openstack flavor show m1.tiny
++ openstack flavor create --vcpus 1 --ram 256 --disk 1 m1.tiny
++----------------------------+--------------------------------------+
+| Field                      | Value                                |
++----------------------------+--------------------------------------+
+| OS-FLV-DISABLED:disabled   | False                                |
+| OS-FLV-EXT-DATA:ephemeral  | 0                                    |
+| description                | None                                 |
+| disk                       | 1                                    |
+| id                         | 4ef7d00c-0bf5-48c9-90e3-b04fceda338c |
+| name                       | m1.tiny                              |
+| os-flavor-access:is_public | True                                 |
+| properties                 |                                      |
+| ram                        | 256                                  |
+| rxtx_factor                | 1.0                                  |
+| swap                       | 0                                    |
+| vcpus                      | 1                                    |
++----------------------------+--------------------------------------+
++ openstack flavor show m1.small
++ openstack flavor create --vcpus 1 --ram 512 --disk 2 m1.small
++----------------------------+--------------------------------------+
+| Field                      | Value                                |
++----------------------------+--------------------------------------+
+| OS-FLV-DISABLED:disabled   | False                                |
+| OS-FLV-EXT-DATA:ephemeral  | 0                                    |
+| description                | None                                 |
+| disk                       | 2                                    |
+| id                         | d45932a1-49f9-4d07-b74e-31dd6b215fda |
+| name                       | m1.small                             |
+| os-flavor-access:is_public | True                                 |
+| properties                 |                                      |
+| ram                        | 512                                  |
+| rxtx_factor                | 1.0                                  |
+| swap                       | 0                                    |
+| vcpus                      | 1                                    |
++----------------------------+--------------------------------------+
++ openstack network show public-net
++ openstack network create --external --share --provider-network-type flat --provider-physical-network physnet1 public-net
++---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| admin_state_up            | UP                                   |
+| availability_zone_hints   |                                      |
+| availability_zones        |                                      |
+| created_at                | 2026-11-15T15:55:28Z                 |
+| description               |                                      |
+| dns_domain                | None                                 |
+| id                        | e4007ec1-226e-4caf-a438-a00bb37d5c56 |
+| ipv4_address_scope        | None                                 |
+| ipv6_address_scope        | None                                 |
+| is_default                | False                                |
+| is_vlan_qinq              | None                                 |
+| is_vlan_transparent       | None                                 |
+| mtu                       | 1500                                 |
+| name                      | public-net                           |
+| port_security_enabled     | True                                 |
+| project_id                | f98dd16f314e454180ef12f1a064acc3     |
+| provider:network_type     | flat                                 |
+| provider:physical_network | physnet1                             |
+| provider:segmentation_id  | None                                 |
+| qos_policy_id             | None                                 |
+| revision_number           | 1                                    |
+| router:external           | External                             |
+| segments                  | None                                 |
+| shared                    | True                                 |
+| status                    | ACTIVE                               |
+| subnets                   |                                      |
+| tags                      |                                      |
+| updated_at                | 2026-11-15T15:55:28Z                 |
++---------------------------+--------------------------------------+
++ openstack subnet show public-subnet
++ openstack subnet create public-subnet --network public-net --no-dhcp --subnet-range 172.24.4.0/24 --gateway 172.24.4.1 --allocation-pool start=172.24.4.100,end=172.24.4.200
++----------------------+--------------------------------------+
+| Field                | Value                                |
++----------------------+--------------------------------------+
+| allocation_pools     | 172.24.4.100-172.24.4.200            |
+| cidr                 | 172.24.4.0/24                        |
+| created_at           | 2026-11-15T15:55:29Z                 |
+| description          |                                      |
+| dns_nameservers      |                                      |
+| dns_publish_fixed_ip | None                                 |
+| enable_dhcp          | False                                |
+| gateway_ip           | 172.24.4.1                           |
+| host_routes          |                                      |
+| id                   | e5883acc-8b2a-4808-8ba0-5154df6123bd |
+| ip_version           | 4                                    |
+| ipv6_address_mode    | None                                 |
+| ipv6_ra_mode         | None                                 |
+| name                 | public-subnet                        |
+| network_id           | e4007ec1-226e-4caf-a438-a00bb37d5c56 |
+| project_id           | f98dd16f314e454180ef12f1a064acc3     |
+| revision_number      | 0                                    |
+| router:external      | True                                 |
+| segment_id           | None                                 |
+| service_types        |                                      |
+| subnetpool_id        | None                                 |
+| tags                 |                                      |
+| updated_at           | 2026-11-15T15:55:29Z                 |
++----------------------+--------------------------------------+
++ cat
++ unset OS_PROJECT_ID OS_TENANT_NAME OS_TENANT_ID OS_SYSTEM_SCOPE
++ source /home/suphanatchanlek.guest/demo-openrc.sh
+++ export OS_AUTH_URL=http://192.168.64.2:5000
+++ OS_AUTH_URL=http://192.168.64.2:5000
+++ export OS_PROJECT_NAME=demo-project
+++ OS_PROJECT_NAME=demo-project
+++ export OS_USERNAME=demo-user
+++ OS_USERNAME=demo-user
+++ export OS_PASSWORD=<REDACTED>
+++ OS_PASSWORD=<REDACTED>
+++ export OS_USER_DOMAIN_NAME=Default
+++ OS_USER_DOMAIN_NAME=Default
+++ export OS_PROJECT_DOMAIN_NAME=Default
+++ OS_PROJECT_DOMAIN_NAME=Default
+++ export OS_IDENTITY_API_VERSION=3
+++ OS_IDENTITY_API_VERSION=3
+++ export OS_INTERFACE=internal
+++ OS_INTERFACE=internal
++ openstack network show private-net
++ openstack network create private-net
++---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| admin_state_up            | UP                                   |
+| availability_zone_hints   |                                      |
+| availability_zones        |                                      |
+| created_at                | 2026-11-15T15:55:30Z                 |
+| description               |                                      |
+| dns_domain                | None                                 |
+| id                        | 28bac3cd-dacc-4f6e-865b-b51abcf9cc72 |
+| ipv4_address_scope        | None                                 |
+| ipv6_address_scope        | None                                 |
+| is_default                | False                                |
+| is_vlan_qinq              | None                                 |
+| is_vlan_transparent       | None                                 |
+| mtu                       | 1450                                 |
+| name                      | private-net                          |
+| port_security_enabled     | True                                 |
+| project_id                | 0b78ef00d5bc4a62affb748c8dba428f     |
+| provider:network_type     | None                                 |
+| provider:physical_network | None                                 |
+| provider:segmentation_id  | None                                 |
+| qos_policy_id             | None                                 |
+| revision_number           | 1                                    |
+| router:external           | Internal                             |
+| segments                  | None                                 |
+| shared                    | False                                |
+| status                    | ACTIVE                               |
+| subnets                   |                                      |
+| tags                      |                                      |
+| updated_at                | 2026-11-15T15:55:30Z                 |
++---------------------------+--------------------------------------+
++ openstack subnet show private-subnet
++ openstack subnet create private-subnet --network private-net --subnet-range 10.10.10.0/24 --dns-nameserver 8.8.8.8
++----------------------+--------------------------------------+
+| Field                | Value                                |
++----------------------+--------------------------------------+
+| allocation_pools     | 10.10.10.2-10.10.10.254              |
+| cidr                 | 10.10.10.0/24                        |
+| created_at           | 2026-11-15T15:55:31Z                 |
+| description          |                                      |
+| dns_nameservers      | 8.8.8.8                              |
+| dns_publish_fixed_ip | None                                 |
+| enable_dhcp          | True                                 |
+| gateway_ip           | 10.10.10.1                           |
+| host_routes          |                                      |
+| id                   | 7909cf13-a41f-438a-8d84-5e290405f842 |
+| ip_version           | 4                                    |
+| ipv6_address_mode    | None                                 |
+| ipv6_ra_mode         | None                                 |
+| name                 | private-subnet                       |
+| network_id           | 28bac3cd-dacc-4f6e-865b-b51abcf9cc72 |
+| project_id           | 0b78ef00d5bc4a62affb748c8dba428f     |
+| revision_number      | 0                                    |
+| router:external      | False                                |
+| segment_id           | None                                 |
+| service_types        |                                      |
+| subnetpool_id        | None                                 |
+| tags                 |                                      |
+| updated_at           | 2026-11-15T15:55:31Z                 |
++----------------------+--------------------------------------+
++ openstack router show r1
++ openstack router create r1
++-------------------------+--------------------------------------+
+| Field                   | Value                                |
++-------------------------+--------------------------------------+
+| admin_state_up          | UP                                   |
+| availability_zone_hints |                                      |
+| availability_zones      |                                      |
+| created_at              | 2026-11-15T15:55:33Z                 |
+| description             |                                      |
+| enable_ndp_proxy        | None                                 |
+| external_gateway_info   | null                                 |
+| flavor_id               | None                                 |
+| id                      | da12de44-b1b4-45b8-9937-d661236e7419 |
+| name                    | r1                                   |
+| project_id              | 0b78ef00d5bc4a62affb748c8dba428f     |
+| revision_number         | 1                                    |
+| routes                  |                                      |
+| status                  | ACTIVE                               |
+| tags                    |                                      |
+| updated_at              | 2026-11-15T15:55:33Z                 |
++-------------------------+--------------------------------------+
++ openstack router set r1 --external-gateway public-net
++ openstack router add subnet r1 private-subnet
++ openstack security group show demo-sg
++ openstack security group create demo-sg --description 'allow ICMP and SSH'
++-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Field           | Value                                                                                                                                                                        |
++-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| created_at      | 2026-11-15T15:55:37Z                                                                                                                                                         |
+| description     | allow ICMP and SSH                                                                                                                                                           |
+| id              | da488f00-df2e-4ba6-b068-5113d4cd897f                                                                                                                                         |
+| is_shared       | False                                                                                                                                                                        |
+| name            | demo-sg                                                                                                                                                                      |
+| project_id      | 0b78ef00d5bc4a62affb748c8dba428f                                                                                                                                             |
+| revision_number | 1                                                                                                                                                                            |
+| rules           | created_at='2026-11-15T15:55:37Z', direction='egress', ethertype='IPv6', id='6b2dbfee-df12-4234-89e0-afd8a07e9c62', standard_attr_id='26', updated_at='2026-11-15T15:55:37Z' |
+|                 | created_at='2026-11-15T15:55:37Z', direction='egress', ethertype='IPv4', id='919d7f11-41e0-4b13-8df9-8bc0b31f237f', standard_attr_id='27', updated_at='2026-11-15T15:55:37Z' |
+| stateful        | True                                                                                                                                                                         |
+| tags            | []                                                                                                                                                                           |
+| updated_at      | 2026-11-15T15:55:37Z                                                                                                                                                         |
++-----------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++ openstack security group rule create --proto icmp demo-sg
++-------------------------+--------------------------------------+
+| Field                   | Value                                |
++-------------------------+--------------------------------------+
+| belongs_to_default_sg   | False                                |
+| created_at              | 2026-11-15T15:55:38Z                 |
+| description             |                                      |
+| direction               | ingress                              |
+| ether_type              | IPv4                                 |
+| id                      | 442147c3-4f28-4743-b35a-c5965248cf6a |
+| normalized_cidr         | 0.0.0.0/0                            |
+| port_range_max          | None                                 |
+| port_range_min          | None                                 |
+| project_id              | 0b78ef00d5bc4a62affb748c8dba428f     |
+| protocol                | icmp                                 |
+| remote_address_group_id | None                                 |
+| remote_group_id         | None                                 |
+| remote_ip_prefix        | 0.0.0.0/0                            |
+| revision_number         | 0                                    |
+| security_group_id       | da488f00-df2e-4ba6-b068-5113d4cd897f |
+| updated_at              | 2026-11-15T15:55:38Z                 |
++-------------------------+--------------------------------------+
++ openstack security group rule create --proto tcp --dst-port 22 demo-sg
++-------------------------+--------------------------------------+
+| Field                   | Value                                |
++-------------------------+--------------------------------------+
+| belongs_to_default_sg   | False                                |
+| created_at              | 2026-11-15T15:55:38Z                 |
+| description             |                                      |
+| direction               | ingress                              |
+| ether_type              | IPv4                                 |
+| id                      | a61f5d5f-d693-4e93-a5e1-b0dd421ed63c |
+| normalized_cidr         | 0.0.0.0/0                            |
+| port_range_max          | 22                                   |
+| port_range_min          | 22                                   |
+| project_id              | 0b78ef00d5bc4a62affb748c8dba428f     |
+| protocol                | tcp                                  |
+| remote_address_group_id | None                                 |
+| remote_group_id         | None                                 |
+| remote_ip_prefix        | 0.0.0.0/0                            |
+| revision_number         | 0                                    |
+| security_group_id       | da488f00-df2e-4ba6-b068-5113d4cd897f |
+| updated_at              | 2026-11-15T15:55:38Z                 |
++-------------------------+--------------------------------------+
++ openstack keypair show demo-key
++ openstack keypair create demo-key
++ chmod 600 /home/suphanatchanlek.guest/demo-key.pem
++ openstack server show demo-vm1
++ openstack server create demo-vm1 --image cirros-aarch64 --flavor m1.small --network private-net --security-group demo-sg --key-name demo-key --wait
++-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Field                               | Value                                                                                                                                                                                      |
++-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| OS-DCF:diskConfig                   | MANUAL                                                                                                                                                                                     |
+| OS-EXT-AZ:availability_zone         | nova                                                                                                                                                                                       |
+| OS-EXT-SRV-ATTR:host                | None                                                                                                                                                                                       |
+| OS-EXT-SRV-ATTR:hostname            | demo-vm1                                                                                                                                                                                   |
+| OS-EXT-SRV-ATTR:hypervisor_hostname | None                                                                                                                                                                                       |
+| OS-EXT-SRV-ATTR:instance_name       | None                                                                                                                                                                                       |
+| OS-EXT-SRV-ATTR:kernel_id           | None                                                                                                                                                                                       |
+| OS-EXT-SRV-ATTR:launch_index        | None                                                                                                                                                                                       |
+| OS-EXT-SRV-ATTR:ramdisk_id          | None                                                                                                                                                                                       |
+| OS-EXT-SRV-ATTR:reservation_id      | None                                                                                                                                                                                       |
+| OS-EXT-SRV-ATTR:root_device_name    | None                                                                                                                                                                                       |
+| OS-EXT-SRV-ATTR:user_data           | None                                                                                                                                                                                       |
+| OS-EXT-STS:power_state              | Running                                                                                                                                                                                    |
+| OS-EXT-STS:task_state               | None                                                                                                                                                                                       |
+| OS-EXT-STS:vm_state                 | active                                                                                                                                                                                     |
+| OS-SRV-USG:launched_at              | 2026-11-15T15:56:36.000000                                                                                                                                                                 |
+| OS-SRV-USG:terminated_at            | None                                                                                                                                                                                       |
+| accessIPv4                          | None                                                                                                                                                                                       |
+| accessIPv6                          | None                                                                                                                                                                                       |
+| addresses                           | private-net=10.10.10.214                                                                                                                                                                   |
+| adminPass                           | kVSaC7uUYqtE                                                                                                                                                                               |
+| config_drive                        | None                                                                                                                                                                                       |
+| created                             | 2026-11-15T15:55:42Z                                                                                                                                                                       |
+| description                         | None                                                                                                                                                                                       |
+| flavor                              | description=, disk='2', ephemeral='0', , id='m1.small', is_disabled=, is_public='True', location=, name='m1.small', original_name='m1.small', ram='512', rxtx_factor=, swap='0', vcpus='1' |
+| hostId                              | 89e1f35d46b6a8945c305f2e5ccf643495c0f26792ded651e8fa165d                                                                                                                                   |
+| host_status                         | None                                                                                                                                                                                       |
+| id                                  | fd3d5b72-7df2-4b48-9295-031dd74857bd                                                                                                                                                       |
+| image                               | cirros-aarch64 (a3a1fcd3-30ad-4c10-9ea9-c7a13f9b0ec7)                                                                                                                                      |
+| key_name                            | demo-key                                                                                                                                                                                   |
+| locked                              | None                                                                                                                                                                                       |
+| locked_reason                       | None                                                                                                                                                                                       |
+| name                                | demo-vm1                                                                                                                                                                                   |
+| pinned_availability_zone            | None                                                                                                                                                                                       |
+| progress                            | None                                                                                                                                                                                       |
+| project_id                          | 0b78ef00d5bc4a62affb748c8dba428f                                                                                                                                                           |
+| properties                          | None                                                                                                                                                                                       |
+| scheduler_hints                     |                                                                                                                                                                                            |
+| security_groups                     | name='demo-sg'                                                                                                                                                                             |
+| server_groups                       | None                                                                                                                                                                                       |
+| status                              | ACTIVE                                                                                                                                                                                     |
+| tags                                |                                                                                                                                                                                            |
+| trusted_image_certificates          | None                                                                                                                                                                                       |
+| updated                             | 2026-11-15T15:56:36Z                                                                                                                                                                       |
+| user_id                             | f88427afbf5d4772916e51661ede989b                                                                                                                                                           |
+| volumes_attached                    |                                                                                                                                                                                            |
++-------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+++ openstack floating ip list -f value -c 'Floating IP Address' -c 'Fixed IP Address'
+++ awk '$2!="None"{print $1}'
+++ head -1
++ FIP=
++ '[' -z '' ']'
+++ openstack floating ip create public-net -f value -c floating_ip_address
++ FIP=172.24.4.200
++ openstack server add floating ip demo-vm1 172.24.4.200
++ openstack volume show vol1
++ openstack volume create --size 1 vol1
++--------------------------------+--------------------------------------+
+| Field                          | Value                                |
++--------------------------------+--------------------------------------+
+| attachments                    | []                                   |
+| availability_zone              | nova                                 |
+| backup_id                      | None                                 |
+| bootable                       | False                                |
+| cluster_name                   | None                                 |
+| consumes_quota                 | True                                 |
+| created_at                     | 2026-11-15T15:56:46.049713           |
+| description                    | None                                 |
+| encrypted                      | False                                |
+| group_id                       | None                                 |
+| id                             | 5403a857-3c0a-44b6-91de-3d2932312058 |
+| multiattach                    | False                                |
+| name                           | vol1                                 |
+| os-vol-host-attr:host          | None                                 |
+| os-vol-mig-status-attr:migstat | None                                 |
+| os-vol-mig-status-attr:name_id | None                                 |
+| os-vol-tenant-attr:tenant_id   | None                                 |
+| properties                     |                                      |
+| provider_id                    | None                                 |
+| replication_status             | None                                 |
+| service_uuid                   | None                                 |
+| shared_targets                 | True                                 |
+| size                           | 1                                    |
+| snapshot_id                    | None                                 |
+| source_volid                   | None                                 |
+| status                         | creating                             |
+| type                           | __DEFAULT__                          |
+| updated_at                     | None                                 |
+| user_id                        | f88427afbf5d4772916e51661ede989b     |
+| volume_type_id                 | 67abd2a0-7463-4dac-9b51-3cb93a23acad |
++--------------------------------+--------------------------------------+
++ sleep 8
++ openstack server volume list demo-vm1 -f value
++ grep -q .
++ openstack server add volume demo-vm1 vol1
++-----------------------+--------------------------------------+
+| Field                 | Value                                |
++-----------------------+--------------------------------------+
+| ID                    | 5403a857-3c0a-44b6-91de-3d2932312058 |
+| Server ID             | fd3d5b72-7df2-4b48-9295-031dd74857bd |
+| Volume ID             | 5403a857-3c0a-44b6-91de-3d2932312058 |
+| Device                | /dev/vdb                             |
+| Tag                   | None                                 |
+| Delete On Termination | False                                |
++-----------------------+--------------------------------------+
++ openstack server list
++--------------------------------------+----------+--------+----------------------------------------+----------------+----------+
+| ID                                   | Name     | Status | Networks                               | Image          | Flavor   |
++--------------------------------------+----------+--------+----------------------------------------+----------------+----------+
+| fd3d5b72-7df2-4b48-9295-031dd74857bd | demo-vm1 | ACTIVE | private-net=10.10.10.214, 172.24.4.200 | cirros-aarch64 | m1.small |
++--------------------------------------+----------+--------+----------------------------------------+----------------+----------+
+Floating IP: 172.24.4.200   (test: ping -c3 172.24.4.200 ; ssh -i ~/demo-key.pem cirros@172.24.4.200)
++ echo 'Floating IP: 172.24.4.200   (test: ping -c3 172.24.4.200 ; ssh -i ~/demo-key.pem cirros@172.24.4.200)'

@@ -1,0 +1,16 @@
+# Lima VM definition: OpenStack All-in-One host (CS223 Project)
+# Host: MacBook Air M5, 16 GB RAM, macOS (Apple Virtualization.framework)
+vmType: vz
+nestedVirtualization: true        # expose /dev/kvm in the guest (M3+ & macOS 15+)
+cpus: 6
+memory: 10GiB
+disk: 100GiB
+images:
+  - location: "https://cloud-images.ubuntu.com/releases/noble/release/ubuntu-24.04-server-cloudimg-arm64.img"
+    arch: "aarch64"
+mounts: []                        # no host folders shared into the VM
+containerd:
+  system: false
+  user: false                     # Kolla installs its own Docker
+networks:
+  - vzNAT: true                   # 2nd NIC "lima0": IP reachable from the Mac (Horizon)

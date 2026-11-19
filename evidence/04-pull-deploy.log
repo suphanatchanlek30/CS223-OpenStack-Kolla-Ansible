@@ -1,0 +1,572 @@
+Pulling Docker images
+[WARNING]: Invalid characters were found in group names but not replaced, use -vvvv to see details
+
+PLAY [Gather facts for all hosts] **********************************************
+
+TASK [Group hosts to determine when using --limit] *****************************
+ok: [localhost]
+
+TASK [Gather facts] ************************************************************
+[WARNING]: Could not match supplied host pattern, ignoring: all_using_limit_True
+ok: [localhost]
+
+PLAY [Gather facts for all hosts (if using --limit)] ***************************
+skipping: no hosts matched
+
+PLAY [Group hosts based on configuration] **************************************
+
+TASK [Group hosts based on Kolla action] ***************************************
+ok: [localhost]
+
+TASK [Group hosts based on enabled services] ***********************************
+[WARNING]: Could not match supplied host pattern, ignoring: kolla_action_precheck
+ok: [localhost] => (item=enable_aodh_False)
+ok: [localhost] => (item=enable_barbican_False)
+ok: [localhost] => (item=enable_blazar_False)
+ok: [localhost] => (item=enable_ceilometer_False)
+ok: [localhost] => (item=enable_ceph_rgw_False)
+ok: [localhost] => (item=enable_cinder_True)
+ok: [localhost] => (item=enable_cloudkitty_False)
+ok: [localhost] => (item=enable_collectd_False)
+ok: [localhost] => (item=enable_cyborg_False)
+ok: [localhost] => (item=enable_designate_False)
+ok: [localhost] => (item=enable_etcd_False)
+ok: [localhost] => (item=enable_fluentd_True)
+ok: [localhost] => (item=enable_glance_True)
+ok: [localhost] => (item=enable_gnocchi_False)
+ok: [localhost] => (item=enable_grafana_False)
+ok: [localhost] => (item=enable_hacluster_False)
+ok: [localhost] => (item=enable_heat_False)
+ok: [localhost] => (item=enable_horizon_True)
+ok: [localhost] => (item=enable_ironic_False)
+ok: [localhost] => (item=enable_iscsid_True)
+ok: [localhost] => (item=enable_keystone_True)
+ok: [localhost] => (item=enable_letsencrypt_False)
+ok: [localhost] => (item=enable_loadbalancer_True)
+ok: [localhost] => (item=enable_magnum_False)
+ok: [localhost] => (item=enable_manila_False)
+ok: [localhost] => (item=enable_mariadb_True)
+ok: [localhost] => (item=enable_masakari_False)
+ok: [localhost] => (item=enable_memcached_True)
+ok: [localhost] => (item=enable_mistral_False)
+ok: [localhost] => (item=enable_multipathd_False)
+ok: [localhost] => (item=enable_neutron_True)
+ok: [localhost] => (item=enable_nova_True)
+ok: [localhost] => (item=enable_octavia_False)
+ok: [localhost] => (item=enable_opensearch_False)
+ok: [localhost] => (item=enable_opensearch_dashboards_False)
+ok: [localhost] => (item=enable_openvswitch_True_enable_ovs_dpdk_False)
+ok: [localhost] => (item=enable_ovn_False)
+ok: [localhost] => (item=enable_placement_True)
+ok: [localhost] => (item=enable_prometheus_False)
+ok: [localhost] => (item=enable_rabbitmq_True)
+ok: [localhost] => (item=enable_valkey_False)
+ok: [localhost] => (item=enable_skyline_False)
+ok: [localhost] => (item=enable_tacker_False)
+ok: [localhost] => (item=enable_trove_False)
+ok: [localhost] => (item=enable_watcher_False)
+
+PLAY [Apply role prechecks] ****************************************************
+skipping: no hosts matched
+
+PLAY [Apply role logs] *********************************************************
+
+TASK [logs : Ensure log volume exists] *****************************************
+skipping: [localhost]
+
+TASK [logs : Ensure kolla_logs volume link to /var/log/kolla exists] ***********
+skipping: [localhost]
+
+PLAY [Apply role kolla_toolbox] ************************************************
+
+TASK [kolla_toolbox : Include tasks for action pull] ***************************
+included: /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/kolla_toolbox/tasks/pull.yml for localhost
+
+TASK [service-images-pull : Pull images for kolla_toolbox] *********************
+changed: [localhost] => (item=kolla-toolbox)
+
+PLAY [Apply role cron] *********************************************************
+
+TASK [cron : Include tasks for action pull] ************************************
+included: /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/cron/tasks/pull.yml for localhost
+
+TASK [service-images-pull : Pull images for cron] ******************************
+changed: [localhost] => (item=cron)
+
+PLAY [Apply role fluentd] ******************************************************
+
+TASK [fluentd : Include tasks for action pull] *********************************
+included: /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/fluentd/tasks/pull.yml for localhost
+
+TASK [service-images-pull : Pull images for fluentd] ***************************
+changed: [localhost] => (item=fluentd)
+
+PLAY [Apply role loadbalancer] *************************************************
+
+TASK [loadbalancer : Include tasks for action pull] ****************************
+included: /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/loadbalancer/tasks/pull.yml for localhost
+
+TASK [service-images-pull : Pull images for loadbalancer] **********************
+changed: [localhost] => (item=haproxy)
+changed: [localhost] => (item=proxysql)
+
+TASK [Configure loadbalancer for aodh] *****************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for barbican] *************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for blazar] ***************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for ceph-rgw] *************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for cinder] ***************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for cloudkitty] ***********************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for cyborg] ***************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for designate] ************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for etcd] *****************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for glance] ***************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for gnocchi] **************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for grafana] **************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for heat] *****************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for horizon] **************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for ironic] ***************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for keystone] *************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for letsencrypt] **********************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for magnum] ***************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for manila] ***************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for mariadb] **************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for masakari] *************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for memcached] ************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for mistral] **************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for neutron] **************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for placement] ************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for nova] *****************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for nova-cell] ************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for octavia] **************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for opensearch] ***********************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for prometheus] ***********************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for rabbitmq] *************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for skyline] **************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for tacker] ***************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for trove] ****************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for watcher] **************************************
+skipping: [localhost]
+
+TASK [Check loadbalancer containers] *******************************************
+[WARNING]: Could not match supplied host pattern, ignoring: enable_opensearch_True
+[WARNING]: Could not match supplied host pattern, ignoring: enable_letsencrypt_True
+[WARNING]: Could not match supplied host pattern, ignoring: enable_collectd_True
+[WARNING]: Could not match supplied host pattern, ignoring: enable_valkey_True
+skipping: [localhost]
+
+PLAY [Apply role opensearch] ***************************************************
+skipping: no hosts matched
+
+PLAY [Apply role letsencrypt] **************************************************
+skipping: no hosts matched
+
+PLAY [Apply role collectd] *****************************************************
+skipping: no hosts matched
+
+PLAY [Apply role valkey] *******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role mariadb] ******************************************************
+
+TASK [mariadb : Group MariaDB hosts based on shards] ***************************
+ok: [localhost] => (item=localhost)
+
+TASK [mariadb : Include tasks for action pull] *********************************
+included: /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/mariadb/tasks/pull.yml for localhost
+
+TASK [service-images-pull : Pull images for mariadb] ***************************
+[WARNING]: Could not match supplied host pattern, ignoring: mariadb_restart
+[WARNING]: Could not match supplied host pattern, ignoring: mariadb_start
+[WARNING]: Could not match supplied host pattern, ignoring: mariadb_bootstrap_restart
+changed: [localhost] => (item=mariadb)
+
+PLAY [Restart mariadb services] ************************************************
+skipping: no hosts matched
+
+PLAY [Start mariadb services] **************************************************
+skipping: no hosts matched
+
+PLAY [Restart bootstrap mariadb service] ***************************************
+skipping: no hosts matched
+
+PLAY [Apply mariadb post-configuration] ****************************************
+
+TASK [Include mariadb post-deploy.yml] *****************************************
+skipping: [localhost]
+
+TASK [Include mariadb post-upgrade.yml] ****************************************
+skipping: [localhost]
+
+PLAY [Apply role memcached] ****************************************************
+
+TASK [memcached : Include tasks for action pull] *******************************
+included: /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/memcached/tasks/pull.yml for localhost
+
+TASK [service-images-pull : Pull images for memcached] *************************
+[WARNING]: Could not match supplied host pattern, ignoring: enable_prometheus_True
+changed: [localhost] => (item=memcached)
+
+PLAY [Apply role prometheus] ***************************************************
+skipping: no hosts matched
+
+PLAY [Apply role prometheus-node-exporters] ************************************
+skipping: no hosts matched
+
+PLAY [Apply role iscsi] ********************************************************
+
+TASK [iscsi : Include tasks for action pull] ***********************************
+included: /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/iscsi/tasks/pull.yml for localhost
+
+TASK [service-images-pull : Pull images for iscsi] *****************************
+[WARNING]: Could not match supplied host pattern, ignoring: enable_multipathd_True
+changed: [localhost] => (item=iscsid)
+changed: [localhost] => (item=tgtd)
+
+PLAY [Apply role multipathd] ***************************************************
+skipping: no hosts matched
+
+PLAY [Apply role rabbitmq] *****************************************************
+
+TASK [rabbitmq : Include tasks for action pull] ********************************
+included: /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/rabbitmq/tasks/pull.yml for localhost
+
+TASK [service-images-pull : Pull images for rabbitmq] **************************
+[WARNING]: Could not match supplied host pattern, ignoring: rabbitmq_restart
+changed: [localhost] => (item=rabbitmq)
+
+PLAY [Restart rabbitmq services] ***********************************************
+skipping: no hosts matched
+
+PLAY [Apply rabbitmq post-configuration] ***************************************
+
+TASK [Include rabbitmq post-deploy.yml] ****************************************
+[WARNING]: Could not match supplied host pattern, ignoring: enable_etcd_True
+skipping: [localhost]
+
+PLAY [Apply role etcd] *********************************************************
+skipping: no hosts matched
+
+PLAY [Apply role keystone] *****************************************************
+
+TASK [keystone : Include tasks for action pull] ********************************
+included: /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/keystone/tasks/pull.yml for localhost
+
+TASK [service-images-pull : Pull images for keystone] **************************
+[WARNING]: Could not match supplied host pattern, ignoring: enable_ceph_rgw_True
+changed: [localhost] => (item=keystone)
+changed: [localhost] => (item=keystone-fernet)
+changed: [localhost] => (item=keystone-ssh)
+
+PLAY [Apply role ceph-rgw] *****************************************************
+skipping: no hosts matched
+
+PLAY [Apply role glance] *******************************************************
+
+TASK [glance : Include tasks for action pull] **********************************
+included: /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/glance/tasks/pull.yml for localhost
+
+TASK [service-images-pull : Pull images for glance] ****************************
+[WARNING]: Could not match supplied host pattern, ignoring: enable_ironic_True
+changed: [localhost] => (item=glance-api)
+
+PLAY [Apply role ironic] *******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role cinder] *******************************************************
+
+TASK [cinder : Include tasks for action pull] **********************************
+included: /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/cinder/tasks/pull.yml for localhost
+
+TASK [service-images-pull : Pull images for cinder] ****************************
+changed: [localhost] => (item=cinder-api)
+changed: [localhost] => (item=cinder-scheduler)
+changed: [localhost] => (item=cinder-volume)
+changed: [localhost] => (item=cinder-backup)
+
+PLAY [Apply role placement] ****************************************************
+
+TASK [placement : Include tasks for action pull] *******************************
+included: /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/placement/tasks/pull.yml for localhost
+
+TASK [service-images-pull : Pull images for placement] *************************
+changed: [localhost] => (item=placement-api)
+
+PLAY [Apply role openvswitch] **************************************************
+
+TASK [openvswitch : Include tasks for action pull] *****************************
+included: /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/openvswitch/tasks/pull.yml for localhost
+
+TASK [service-images-pull : Pull images for openvswitch] ***********************
+[WARNING]: Could not match supplied host pattern, ignoring: enable_openvswitch_True_enable_ovs_dpdk_True
+[WARNING]: Could not match supplied host pattern, ignoring: enable_ovn_True
+changed: [localhost] => (item=openvswitch-db-server)
+changed: [localhost] => (item=openvswitch-vswitchd)
+
+PLAY [Apply role ovs-dpdk] *****************************************************
+skipping: no hosts matched
+
+PLAY [Apply role ovn-controller] ***********************************************
+skipping: no hosts matched
+
+PLAY [Apply role ovn-db] *******************************************************
+skipping: no hosts matched
+
+PLAY [Bootstrap nova API databases] ********************************************
+
+TASK [Bootstrap deploy] ********************************************************
+skipping: [localhost]
+
+TASK [Bootstrap upgrade] *******************************************************
+skipping: [localhost]
+
+PLAY [Bootstrap nova cell databases] *******************************************
+
+TASK [Bootstrap deploy] ********************************************************
+skipping: [localhost]
+
+TASK [Bootstrap upgrade] *******************************************************
+skipping: [localhost]
+
+PLAY [Apply role nova] *********************************************************
+
+TASK [nova : Include tasks for action pull] ************************************
+included: /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/nova/tasks/pull.yml for localhost
+
+TASK [service-images-pull : Pull images for nova] ******************************
+changed: [localhost] => (item=nova-api)
+ok: [localhost] => (item=nova-metadata)
+changed: [localhost] => (item=nova-scheduler)
+
+PLAY [Apply role nova-cell] ****************************************************
+
+TASK [nova-cell : Include tasks for action pull] *******************************
+included: /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/nova-cell/tasks/pull.yml for localhost
+
+TASK [service-images-pull : Pull images for nova_cell] *************************
+changed: [localhost] => (item=nova-libvirt)
+changed: [localhost] => (item=nova-ssh)
+changed: [localhost] => (item=nova-novncproxy)
+changed: [localhost] => (item=nova-conductor)
+changed: [localhost] => (item=nova-compute)
+
+PLAY [Refresh nova scheduler cell cache] ***************************************
+
+TASK [nova : Refresh cell cache in nova scheduler] *****************************
+skipping: [localhost]
+
+PLAY [Reload global Nova super conductor services] *****************************
+
+TASK [nova : Reload nova super conductor services to remove RPC version pin] ***
+skipping: [localhost]
+
+PLAY [Reload Nova cell services] ***********************************************
+
+TASK [nova-cell : Reload nova cell services to remove RPC version cap] *********
+skipping: [localhost] => (item=nova-conductor) 
+skipping: [localhost] => (item=nova-compute) 
+skipping: [localhost] => (item=nova-compute-ironic) 
+skipping: [localhost] => (item=nova-novncproxy) 
+skipping: [localhost] => (item=nova-serialproxy) 
+skipping: [localhost] => (item=nova-spicehtml5proxy) 
+skipping: [localhost]
+
+TASK [nova-cell : Reload nova-compute-ironic to remove RPC version cap (iterated)] ***
+skipping: [localhost]
+
+PLAY [Reload global Nova API services] *****************************************
+
+TASK [nova : Reload nova API services to remove RPC version pin] ***************
+skipping: [localhost] => (item=nova-scheduler) 
+skipping: [localhost] => (item=nova-api) 
+skipping: [localhost]
+
+PLAY [Run Nova API online data migrations] *************************************
+
+TASK [nova : Run Nova API online database migrations] **************************
+skipping: [localhost]
+
+PLAY [Run Nova cell online data migrations] ************************************
+
+TASK [nova-cell : Run Nova cell online database migrations] ********************
+skipping: [localhost]
+
+PLAY [Apply role neutron] ******************************************************
+
+TASK [neutron : Include tasks for action pull] *********************************
+included: /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/neutron/tasks/pull.yml for localhost
+
+TASK [service-images-pull : Pull images for neutron] ***************************
+[WARNING]: Could not match supplied host pattern, ignoring: enable_hacluster_True
+[WARNING]: Could not match supplied host pattern, ignoring: enable_heat_True
+changed: [localhost] => (item=neutron-server)
+ok: [localhost] => (item=neutron-rpc-server)
+ok: [localhost] => (item=neutron-periodic-worker)
+changed: [localhost] => (item=neutron-openvswitch-agent)
+changed: [localhost] => (item=neutron-dhcp-agent)
+changed: [localhost] => (item=neutron-l3-agent)
+changed: [localhost] => (item=neutron-metadata-agent)
+
+PLAY [Apply role hacluster] ****************************************************
+skipping: no hosts matched
+
+PLAY [Apply role heat] *********************************************************
+skipping: no hosts matched
+
+PLAY [Apply role horizon] ******************************************************
+
+TASK [horizon : Include tasks for action pull] *********************************
+included: /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/horizon/tasks/pull.yml for localhost
+
+TASK [service-images-pull : Pull images for horizon] ***************************
+[WARNING]: Could not match supplied host pattern, ignoring: enable_magnum_True
+[WARNING]: Could not match supplied host pattern, ignoring: enable_mistral_True
+[WARNING]: Could not match supplied host pattern, ignoring: enable_manila_True
+[WARNING]: Could not match supplied host pattern, ignoring: enable_gnocchi_True
+[WARNING]: Could not match supplied host pattern, ignoring: enable_ceilometer_True
+[WARNING]: Could not match supplied host pattern, ignoring: enable_aodh_True
+[WARNING]: Could not match supplied host pattern, ignoring: enable_barbican_True
+[WARNING]: Could not match supplied host pattern, ignoring: enable_cyborg_True
+[WARNING]: Could not match supplied host pattern, ignoring: enable_designate_True
+[WARNING]: Could not match supplied host pattern, ignoring: enable_trove_True
+[WARNING]: Could not match supplied host pattern, ignoring: enable_watcher_True
+[WARNING]: Could not match supplied host pattern, ignoring: enable_grafana_True
+[WARNING]: Could not match supplied host pattern, ignoring: enable_cloudkitty_True
+[WARNING]: Could not match supplied host pattern, ignoring: enable_tacker_True
+[WARNING]: Could not match supplied host pattern, ignoring: enable_octavia_True
+[WARNING]: Could not match supplied host pattern, ignoring: enable_blazar_True
+[WARNING]: Could not match supplied host pattern, ignoring: enable_masakari_True
+[WARNING]: Could not match supplied host pattern, ignoring: enable_skyline_True
+changed: [localhost] => (item=horizon)
+
+PLAY [Apply role magnum] *******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role mistral] ******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role manila] *******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role gnocchi] ******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role ceilometer] ***************************************************
+skipping: no hosts matched
+
+PLAY [Apply role aodh] *********************************************************
+skipping: no hosts matched
+
+PLAY [Apply role barbican] *****************************************************
+skipping: no hosts matched
+
+PLAY [Apply role cyborg] *******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role designate] ****************************************************
+skipping: no hosts matched
+
+PLAY [Apply role trove] ********************************************************
+skipping: no hosts matched
+
+PLAY [Apply role watcher] ******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role grafana] ******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role cloudkitty] ***************************************************
+skipping: no hosts matched
+
+PLAY [Apply role tacker] *******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role octavia] ******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role blazar] *******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role masakari] *****************************************************
+skipping: no hosts matched
+
+PLAY [Apply role skyline] ******************************************************
+skipping: no hosts matched
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=39   changed=17   unreachable=0    failed=0    skipped=52   rescued=0    ignored=0   
+
+usage: kolla-ansible deploy [-h] [-b] [-C] [-D] [-e EXTRA_VARS] [-i INVENTORY]
+                            [-l SUBSET] [--skip-tags TAGS] [-t TAGS] [-lt]
+                            [-p PLAYBOOKS] [--vault-id VAULT_IDS]
+                            [--vault-password-file VAULT_PASSWORD_FILES] [-J]
+                            [--configdir KOLLA_CONFIG_PATH]
+                            [--passwords KOLLA_PASSWORDS]
+kolla-ansible deploy: error: unrecognized arguments: --use-test-images

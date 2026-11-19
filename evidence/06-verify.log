@@ -1,0 +1,80 @@
+post-deploy=0
++ openstack service list
++----------------------------------+-----------+---------------+
+| ID                               | Name      | Type          |
++----------------------------------+-----------+---------------+
+| 1770363ea5af49bf8ad5a4e54e15d91a | cinder    | block-storage |
+| 3a5830271aa34329bbf2af516d10e62d | nova      | compute       |
+| 4af3190e3e2847039cc7f8375625cb1b | placement | placement     |
+| 501936b68ce04ab2bed6a5a9ec1fe90d | glance    | image         |
+| 754518478f944e019e63a8d63f441ca1 | neutron   | network       |
+| f428237b65ed496bb6e43a3b5c14a5de | keystone  | identity      |
++----------------------------------+-----------+---------------+
++ openstack compute service list
++--------------------------------------+----------------+--------------------+----------+---------+-------+----------------------------+
+| ID                                   | Binary         | Host               | Zone     | Status  | State | Updated At                 |
++--------------------------------------+----------------+--------------------+----------+---------+-------+----------------------------+
+| 0f93e85b-9374-4df5-8af2-5224d7d69f9c | nova-scheduler | lima-openstack-aio | internal | enabled | up    | 2026-11-15T15:54:58.000000 |
+| 4f74fb4c-d833-470e-96e5-f0f503c08daf | nova-conductor | lima-openstack-aio | internal | enabled | up    | 2026-11-15T15:54:59.000000 |
+| a9794ded-3180-4ef1-9921-5854a9a99d56 | nova-compute   | lima-openstack-aio | nova     | enabled | up    | 2026-11-15T15:54:58.000000 |
++--------------------------------------+----------------+--------------------+----------+---------+-------+----------------------------+
++ openstack network agent list -c 'Agent Type' -c Alive -c State
++--------------------+-------+-------+
+| Agent Type         | Alive | State |
++--------------------+-------+-------+
+| DHCP agent         | :-)   | UP    |
+| Open vSwitch agent | :-)   | UP    |
+| Metadata agent     | :-)   | UP    |
+| L3 agent           | :-)   | UP    |
++--------------------+-------+-------+
++ openstack volume service list
++------------------+--------------------------+------+---------+-------+----------------------------+---------+---------------+
+| Binary           | Host                     | Zone | Status  | State | Updated At                 | Cluster | Backend State |
++------------------+--------------------------+------+---------+-------+----------------------------+---------+---------------+
+| cinder-scheduler | lima-openstack-aio       | nova | enabled | up    | 2026-11-15T15:55:00.000000 | None    | None          |
+| cinder-volume    | lima-openstack-aio@lvm-1 | nova | enabled | up    | 2026-11-15T15:54:59.000000 | None    | None          |
+| cinder-backup    | lima-openstack-aio       | nova | enabled | down  | 2026-11-15T15:45:37.000000 | None    | None          |
++------------------+--------------------------+------+---------+-------+----------------------------+---------+---------------+
++ openstack hypervisor list
++--------------------------------------+---------------------+-----------------+--------------+-------+
+| ID                                   | Hypervisor Hostname | Hypervisor Type | Host IP      | State |
++--------------------------------------+---------------------+-----------------+--------------+-------+
+| cf969c81-aed5-567f-9d29-a8f4ab5b78de | lima-openstack-aio  | QEMU            | 192.168.64.2 | up    |
++--------------------------------------+---------------------+-----------------+--------------+-------+
++ sudo docker ps --format '{{.Names}}\t{{.Status}}'
++ sort
+cinder_api	Up 9 minutes (healthy)
+cinder_backup	Up 9 minutes (healthy)
+cinder_scheduler	Up 9 minutes (healthy)
+cinder_volume	Up 9 minutes (healthy)
+cron	Up 11 minutes
+fluentd	Up 13 minutes
+glance_api	Up 9 minutes (healthy)
+horizon	Up 37 seconds (healthy)
+iscsid	Up 10 minutes
+keystone	Up 10 minutes (healthy)
+keystone_fernet	Up 10 minutes (healthy)
+keystone_ssh	Up 10 minutes (healthy)
+kolla_toolbox	Up 13 minutes
+mariadb	Up 10 minutes (healthy)
+memcached	Up 10 minutes (healthy)
+neutron_dhcp_agent	Up 43 seconds (healthy)
+neutron_l3_agent	Up 42 seconds (healthy)
+neutron_metadata_agent	Up 41 seconds
+neutron_openvswitch_agent	Up 44 seconds (healthy)
+neutron_periodic_worker	Up 49 seconds (healthy)
+neutron_rpc_server	Up 55 seconds (healthy)
+neutron_server	Up 56 seconds (healthy)
+nova_api	Up 8 minutes (healthy)
+nova_compute	Up 5 minutes (healthy)
+nova_conductor	Up 8 minutes (healthy)
+nova_libvirt	Up 7 minutes (healthy)
+nova_metadata	Up 8 minutes (healthy)
+nova_novncproxy	Up 8 minutes (healthy)
+nova_scheduler	Up 8 minutes (healthy)
+nova_ssh	Up 7 minutes (healthy)
+openvswitch_db	Up 9 minutes (healthy)
+openvswitch_vswitchd	Up 9 minutes (healthy)
+placement_api	Up 9 minutes (healthy)
+rabbitmq	Up 10 minutes (healthy)
+tgtd	Up 10 minutes

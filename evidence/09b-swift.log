@@ -1,0 +1,146 @@
+++ ip -4 -br addr show lima0
+++ awk '{print $3}'
+++ cut -d/ -f1
++ IP=192.168.64.2
++ PORT=8080
+++ openssl rand -hex 12
++ SWIFT_PASS=50ee96c426585e6d8f8eb5ba
++ sudo ss -ltnp
++ grep ':8080 '
++ grep -vq swift-proxy
++ true
++ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y swift swift-proxy swift-account swift-container swift-object python3-swiftclient python3-keystonemiddleware xfsprogs
+Reading package lists...
+Building dependency tree...
+Reading state information...
+swift is already the newest version (2.33.0-0ubuntu1.1).
+swift-proxy is already the newest version (2.33.0-0ubuntu1.1).
+swift-account is already the newest version (2.33.0-0ubuntu1.1).
+swift-container is already the newest version (2.33.0-0ubuntu1.1).
+swift-object is already the newest version (2.33.0-0ubuntu1.1).
+python3-swiftclient is already the newest version (1:4.5.0-0ubuntu1).
+python3-keystonemiddleware is already the newest version (10.6.0-0ubuntu1.1).
+xfsprogs is already the newest version (6.6.0-1ubuntu2.1).
+The following packages were automatically installed and are no longer required:
+  libisns0t64 libopeniscsiusr
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 40 not upgraded.
++ sudo mkdir -p /srv/node/d1 /var/cache/swift /etc/swift
++ '[' -f /srv/swift-disk.img ']'
++ grep -q swift-disk /etc/fstab
++ mountpoint -q /srv/node/d1
++ sudo chown -R swift:swift /srv/node /var/cache/swift
++ sudo test -f /etc/swift/swift.conf
++ for s in account:6202 container:6201 object:6200
++ n=account
++ p=6202
++ sudo tee /etc/swift/account-server.conf
++ for s in account:6202 container:6201 object:6200
++ n=container
++ p=6201
++ sudo tee /etc/swift/container-server.conf
++ for s in account:6202 container:6201 object:6200
++ n=object
++ p=6200
++ sudo tee /etc/swift/object-server.conf
++ sudo tee -a /etc/swift/container-server.conf
++ sudo tee -a /etc/swift/object-server.conf
++ for r in account:6202 container:6201 object:6200
++ n=account
++ p=6202
++ sudo test -f /etc/swift/account.ring.gz
++ continue
++ for r in account:6202 container:6201 object:6200
++ n=container
++ p=6201
++ sudo test -f /etc/swift/container.ring.gz
++ continue
++ for r in account:6202 container:6201 object:6200
++ n=object
++ p=6200
++ sudo test -f /etc/swift/object.ring.gz
++ continue
++ sudo chown -R swift:swift /etc/swift
++ openstack user show swift
++ openstack user set --password <REDACTED> swift
++ openstack role add --project service --user swift admin
++ openstack service show object-store
++ for i in public internal admin
++ grep -q .
++ openstack endpoint list --service object-store --interface public -f value
++ for i in public internal admin
++ openstack endpoint list --service object-store --interface internal -f value
++ grep -q .
++ for i in public internal admin
++ openstack endpoint list --service object-store --interface admin -f value
++ grep -q .
++ sudo tee /etc/swift/proxy-server.conf
++ sudo chown swift:swift /etc/swift/proxy-server.conf
++ sudo chmod 640 /etc/swift/proxy-server.conf
++ sudo swift-init all stop
+No container-sharder running
+No account-auditor running
+No container-auditor running
+Signal account-server  pid: 112069  signal: 15
+No account-server running
+No container-sync running
+Signal container-server  pid: 112071  signal: 15
+No container-server running
+No account-reaper running
+Signal proxy-server  pid: 112068  signal: 15
+No proxy-server running
+No container-updater running
+No object-auditor running
+Signal object-server  pid: 112070  signal: 15
+No object-server running
+No object-replicator running
+No object-updater running
+No container-replicator running
+No object-reconstructor running
+No account-replicator running
+No container-reconciler running
++ true
++ sudo systemctl daemon-reload
++ sudo systemctl enable swift-account swift-container swift-object swift-proxy
+Synchronizing state of swift-account.service with SysV service script with /usr/lib/systemd/systemd-sysv-install.
+Executing: /usr/lib/systemd/systemd-sysv-install enable swift-account
+Synchronizing state of swift-container.service with SysV service script with /usr/lib/systemd/systemd-sysv-install.
+Executing: /usr/lib/systemd/systemd-sysv-install enable swift-container
+Synchronizing state of swift-object.service with SysV service script with /usr/lib/systemd/systemd-sysv-install.
+Executing: /usr/lib/systemd/systemd-sysv-install enable swift-object
+Synchronizing state of swift-proxy.service with SysV service script with /usr/lib/systemd/systemd-sysv-install.
+Executing: /usr/lib/systemd/systemd-sysv-install enable swift-proxy
++ sudo systemctl restart swift-account swift-container swift-object swift-proxy
++ sleep 3
++ curl -s http://192.168.64.2:8080/healthcheck
+OK
++ echo
++ openstack object store account show
++------------+---------------------------------------+
+| Field      | Value                                 |
++------------+---------------------------------------+
+| Account    | AUTH_f98dd16f314e454180ef12f1a064acc3 |
+| Bytes      | 0                                     |
+| Containers | 0                                     |
+| Objects    | 0                                     |
++------------+---------------------------------------+
++ openstack container show demo-container
++ openstack container create demo-container
++---------------------------------------+----------------+------------------------------------+
+| account                               | container      | x-trans-id                         |
++---------------------------------------+----------------+------------------------------------+
+| AUTH_f98dd16f314e454180ef12f1a064acc3 | demo-container | txe2e4eaf1d5ae49998aa08-006af9d784 |
++---------------------------------------+----------------+------------------------------------+
++ echo 'Hello from Swift on OpenStack (CS223)'
++ openstack object create demo-container /tmp/hello.txt --name hello.txt
++-----------+----------------+----------------------------------+
+| object    | container      | etag                             |
++-----------+----------------+----------------------------------+
+| hello.txt | demo-container | 55d6d8e68c5235d1d54379879b7b3147 |
++-----------+----------------+----------------------------------+
++ openstack object list demo-container
++-----------+
+| Name      |
++-----------+
+| hello.txt |
++-----------+

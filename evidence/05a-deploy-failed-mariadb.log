@@ -1,0 +1,728 @@
+Deploying Playbooks
+[WARNING]: Invalid characters were found in group names but not replaced, use -vvvv to see details
+
+PLAY [Gather facts for all hosts] **********************************************
+
+TASK [Group hosts to determine when using --limit] *****************************
+ok: [localhost]
+
+TASK [Gather facts] ************************************************************
+[WARNING]: Could not match supplied host pattern, ignoring: all_using_limit_True
+ok: [localhost]
+
+PLAY [Gather facts for all hosts (if using --limit)] ***************************
+skipping: no hosts matched
+
+PLAY [Group hosts based on configuration] **************************************
+
+TASK [Group hosts based on Kolla action] ***************************************
+ok: [localhost]
+
+TASK [Group hosts based on enabled services] ***********************************
+[WARNING]: Could not match supplied host pattern, ignoring: kolla_action_precheck
+ok: [localhost] => (item=enable_aodh_False)
+ok: [localhost] => (item=enable_barbican_False)
+ok: [localhost] => (item=enable_blazar_False)
+ok: [localhost] => (item=enable_ceilometer_False)
+ok: [localhost] => (item=enable_ceph_rgw_False)
+ok: [localhost] => (item=enable_cinder_True)
+ok: [localhost] => (item=enable_cloudkitty_False)
+ok: [localhost] => (item=enable_collectd_False)
+ok: [localhost] => (item=enable_cyborg_False)
+ok: [localhost] => (item=enable_designate_False)
+ok: [localhost] => (item=enable_etcd_False)
+ok: [localhost] => (item=enable_fluentd_True)
+ok: [localhost] => (item=enable_glance_True)
+ok: [localhost] => (item=enable_gnocchi_False)
+ok: [localhost] => (item=enable_grafana_False)
+ok: [localhost] => (item=enable_hacluster_False)
+ok: [localhost] => (item=enable_heat_False)
+ok: [localhost] => (item=enable_horizon_True)
+ok: [localhost] => (item=enable_ironic_False)
+ok: [localhost] => (item=enable_iscsid_True)
+ok: [localhost] => (item=enable_keystone_True)
+ok: [localhost] => (item=enable_letsencrypt_False)
+ok: [localhost] => (item=enable_loadbalancer_True)
+ok: [localhost] => (item=enable_magnum_False)
+ok: [localhost] => (item=enable_manila_False)
+ok: [localhost] => (item=enable_mariadb_True)
+ok: [localhost] => (item=enable_masakari_False)
+ok: [localhost] => (item=enable_memcached_True)
+ok: [localhost] => (item=enable_mistral_False)
+ok: [localhost] => (item=enable_multipathd_False)
+ok: [localhost] => (item=enable_neutron_True)
+ok: [localhost] => (item=enable_nova_True)
+ok: [localhost] => (item=enable_octavia_False)
+ok: [localhost] => (item=enable_opensearch_False)
+ok: [localhost] => (item=enable_opensearch_dashboards_False)
+ok: [localhost] => (item=enable_openvswitch_True_enable_ovs_dpdk_False)
+ok: [localhost] => (item=enable_ovn_False)
+ok: [localhost] => (item=enable_placement_True)
+ok: [localhost] => (item=enable_prometheus_False)
+ok: [localhost] => (item=enable_rabbitmq_True)
+ok: [localhost] => (item=enable_valkey_False)
+ok: [localhost] => (item=enable_skyline_False)
+ok: [localhost] => (item=enable_tacker_False)
+ok: [localhost] => (item=enable_trove_False)
+ok: [localhost] => (item=enable_watcher_False)
+
+PLAY [Apply role prechecks] ****************************************************
+skipping: no hosts matched
+
+PLAY [Apply role logs] *********************************************************
+
+TASK [logs : Ensure log volume exists] *****************************************
+changed: [localhost]
+
+TASK [logs : Ensure kolla_logs volume link to /var/log/kolla exists] ***********
+changed: [localhost]
+
+PLAY [Apply role kolla_toolbox] ************************************************
+
+TASK [kolla_toolbox : Include tasks for action deploy] *************************
+[WARNING]: file /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/kolla_toolbox/tasks/bootstrap.yml is empty and had no tasks to include
+included: /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/kolla_toolbox/tasks/deploy.yml for localhost
+
+TASK [kolla_toolbox : Ensuring config directories exist] ***********************
+changed: [localhost]
+
+TASK [kolla_toolbox : Copying over TLS certificates] ***************************
+skipping: [localhost]
+
+TASK [kolla_toolbox : Copying over config.json files for services] *************
+changed: [localhost] => (item={'key': 'kolla-toolbox', 'value': {'container_name': 'kolla_toolbox', 'group': 'kolla_toolbox', 'enabled': True, 'image': 'quay.io/openstack.kolla/kolla-toolbox:2026.1-ubuntu-noble-aarch64', 'environment': {'ANSIBLE_NOCOLOR': '1', 'ANSIBLE_LIBRARY': '/usr/share/ansible', 'REQUESTS_CA_BUNDLE': ''}, 'privileged': True, 'volumes': ['/etc/kolla/kolla-toolbox/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '/dev/:/dev/', '/run/:/run/:shared', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}})
+
+TASK [kolla_toolbox : Ensure RabbitMQ Erlang cookie exists] ********************
+changed: [localhost]
+
+TASK [kolla_toolbox : Ensuring config directories have correct owner and permission] ***
+ok: [localhost] => (item={'key': 'kolla-toolbox', 'value': {'container_name': 'kolla_toolbox', 'group': 'kolla_toolbox', 'enabled': True, 'image': 'quay.io/openstack.kolla/kolla-toolbox:2026.1-ubuntu-noble-aarch64', 'environment': {'ANSIBLE_NOCOLOR': '1', 'ANSIBLE_LIBRARY': '/usr/share/ansible', 'REQUESTS_CA_BUNDLE': ''}, 'privileged': True, 'volumes': ['/etc/kolla/kolla-toolbox/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '/dev/:/dev/', '/run/:/run/:shared', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}})
+
+TASK [kolla_toolbox : Copy rabbitmq-env.conf to kolla toolbox] *****************
+changed: [localhost] => (item=/home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/kolla_toolbox/templates/rabbitmq-env.conf.j2)
+
+TASK [kolla_toolbox : Copy rabbitmq erl_inetrc to kolla toolbox] ***************
+changed: [localhost] => (item=/home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/kolla_toolbox/templates/erl_inetrc.j2)
+
+TASK [kolla_toolbox : Copy clouds.yaml to kolla toolbox] ***********************
+changed: [localhost]
+
+TASK [service-check-containers : Check containers for kolla_toolbox] ***********
+changed: [localhost] => (item={'key': 'kolla-toolbox', 'value': {'container_name': 'kolla_toolbox', 'group': 'kolla_toolbox', 'enabled': True, 'image': 'quay.io/openstack.kolla/kolla-toolbox:2026.1-ubuntu-noble-aarch64', 'environment': {'ANSIBLE_NOCOLOR': '1', 'ANSIBLE_LIBRARY': '/usr/share/ansible', 'REQUESTS_CA_BUNDLE': ''}, 'privileged': True, 'volumes': ['/etc/kolla/kolla-toolbox/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '/dev/:/dev/', '/run/:/run/:shared', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}})
+
+TASK [service-check-containers : Notify handlers to restart containers for kolla_toolbox] ***
+changed: [localhost] => {
+    "msg": "Notifying handlers: Restart kolla-toolbox container"
+}
+
+TASK [service-check-containers : Check containers that require iteration for kolla_toolbox] ***
+skipping: [localhost] => (item={'key': 'kolla-toolbox', 'value': {'container_name': 'kolla_toolbox', 'group': 'kolla_toolbox', 'enabled': True, 'image': 'quay.io/openstack.kolla/kolla-toolbox:2026.1-ubuntu-noble-aarch64', 'environment': {'ANSIBLE_NOCOLOR': '1', 'ANSIBLE_LIBRARY': '/usr/share/ansible', 'REQUESTS_CA_BUNDLE': ''}, 'privileged': True, 'volumes': ['/etc/kolla/kolla-toolbox/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '/dev/:/dev/', '/run/:/run/:shared', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost]
+
+TASK [kolla_toolbox : Flush handlers] ******************************************
+
+RUNNING HANDLER [kolla_toolbox : Restart kolla-toolbox container] **************
+changed: [localhost]
+
+RUNNING HANDLER [kolla_toolbox : Initializing toolbox container using normal user] ***
+ok: [localhost]
+
+PLAY [Apply role cron] *********************************************************
+
+TASK [cron : Include tasks for action deploy] **********************************
+[WARNING]: file /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/cron/tasks/bootstrap.yml is empty and had no tasks to include
+included: /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/cron/tasks/deploy.yml for localhost
+
+TASK [cron : Ensuring config directories exist] ********************************
+changed: [localhost]
+
+TASK [cron : Copying over TLS certificates] ************************************
+skipping: [localhost]
+
+TASK [cron : Copying over config.json files for services] **********************
+changed: [localhost] => (item={'key': 'cron', 'value': {'container_name': 'cron', 'group': 'cron', 'enabled': True, 'image': 'quay.io/openstack.kolla/cron:2026.1-ubuntu-noble-aarch64', 'environment': {'KOLLA_LOGROTATE_SCHEDULE': 'daily'}, 'volumes': ['/etc/kolla/cron/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}})
+
+TASK [cron : Copying over cron logrotate config file] **************************
+changed: [localhost] => (item=/home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/cron/templates/cron-logrotate-global.conf.j2)
+
+TASK [cron : Ensuring config directories have correct owner and permission] ****
+ok: [localhost] => (item={'key': 'cron', 'value': {'container_name': 'cron', 'group': 'cron', 'enabled': True, 'image': 'quay.io/openstack.kolla/cron:2026.1-ubuntu-noble-aarch64', 'environment': {'KOLLA_LOGROTATE_SCHEDULE': 'daily'}, 'volumes': ['/etc/kolla/cron/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}})
+
+TASK [service-check-containers : Check containers for cron] ********************
+changed: [localhost] => (item={'key': 'cron', 'value': {'container_name': 'cron', 'group': 'cron', 'enabled': True, 'image': 'quay.io/openstack.kolla/cron:2026.1-ubuntu-noble-aarch64', 'environment': {'KOLLA_LOGROTATE_SCHEDULE': 'daily'}, 'volumes': ['/etc/kolla/cron/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}})
+
+TASK [service-check-containers : Notify handlers to restart containers for cron] ***
+changed: [localhost] => {
+    "msg": "Notifying handlers: Restart cron container"
+}
+
+TASK [service-check-containers : Check containers that require iteration for cron] ***
+skipping: [localhost] => (item={'key': 'cron', 'value': {'container_name': 'cron', 'group': 'cron', 'enabled': True, 'image': 'quay.io/openstack.kolla/cron:2026.1-ubuntu-noble-aarch64', 'environment': {'KOLLA_LOGROTATE_SCHEDULE': 'daily'}, 'volumes': ['/etc/kolla/cron/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost]
+
+TASK [cron : Flush handlers] ***************************************************
+
+RUNNING HANDLER [cron : Restart cron container] ********************************
+changed: [localhost]
+
+PLAY [Apply role fluentd] ******************************************************
+
+TASK [fluentd : Include tasks for action deploy] *******************************
+[WARNING]: file /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/fluentd/tasks/bootstrap.yml is empty and had no tasks to include
+included: /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/fluentd/tasks/deploy.yml for localhost
+
+TASK [fluentd : Ensuring config directories exist] *****************************
+changed: [localhost]
+
+TASK [fluentd : Copying over TLS certificates] *********************************
+skipping: [localhost]
+
+TASK [fluentd : Ensure /var/log/journal exists on EL systems] ******************
+skipping: [localhost]
+
+TASK [fluentd : Copying over config.json files for services] *******************
+changed: [localhost] => (item={'key': 'fluentd', 'value': {'container_name': 'fluentd', 'group': 'fluentd', 'enabled': True, 'image': 'quay.io/openstack.kolla/fluentd:2026.1-ubuntu-noble-aarch64', 'environment': {'KOLLA_CONFIG_STRATEGY': 'COPY_ALWAYS'}, 'volumes': ['/etc/kolla/fluentd/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'kolla_logs:/var/log/kolla/', 'fluentd_data:/var/lib/fluentd/data/', '/var/log/journal:/var/log/journal:ro'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}})
+
+TASK [fluentd : Find custom fluentd input config files] ************************
+[WARNING]: Skipped '/etc/kolla/config/fluentd/input' path due to this access issue: '/etc/kolla/config/fluentd/input' is not a directory
+ok: [localhost]
+
+TASK [fluentd : Find custom fluentd filter config files] ***********************
+[WARNING]: Skipped '/etc/kolla/config/fluentd/filter' path due to this access issue: '/etc/kolla/config/fluentd/filter' is not a directory
+ok: [localhost]
+
+TASK [fluentd : Find custom fluentd format config files] ***********************
+[WARNING]: Skipped '/etc/kolla/config/fluentd/format' path due to this access issue: '/etc/kolla/config/fluentd/format' is not a directory
+ok: [localhost]
+
+TASK [fluentd : Find custom fluentd output config files] ***********************
+[WARNING]: Skipped '/etc/kolla/config/fluentd/output' path due to this access issue: '/etc/kolla/config/fluentd/output' is not a directory
+ok: [localhost]
+
+TASK [fluentd : Copying over fluentd.conf] *************************************
+changed: [localhost]
+
+TASK [fluentd : Ensuring config directories have correct owner and permission] ***
+ok: [localhost] => (item={'key': 'fluentd', 'value': {'container_name': 'fluentd', 'group': 'fluentd', 'enabled': True, 'image': 'quay.io/openstack.kolla/fluentd:2026.1-ubuntu-noble-aarch64', 'environment': {'KOLLA_CONFIG_STRATEGY': 'COPY_ALWAYS'}, 'volumes': ['/etc/kolla/fluentd/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'kolla_logs:/var/log/kolla/', 'fluentd_data:/var/lib/fluentd/data/', '/var/log/journal:/var/log/journal:ro'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}})
+
+TASK [service-check-containers : Check containers for fluentd] *****************
+changed: [localhost] => (item={'key': 'fluentd', 'value': {'container_name': 'fluentd', 'group': 'fluentd', 'enabled': True, 'image': 'quay.io/openstack.kolla/fluentd:2026.1-ubuntu-noble-aarch64', 'environment': {'KOLLA_CONFIG_STRATEGY': 'COPY_ALWAYS'}, 'volumes': ['/etc/kolla/fluentd/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'kolla_logs:/var/log/kolla/', 'fluentd_data:/var/lib/fluentd/data/', '/var/log/journal:/var/log/journal:ro'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}})
+
+TASK [service-check-containers : Notify handlers to restart containers for fluentd] ***
+changed: [localhost] => {
+    "msg": "Notifying handlers: Restart fluentd container"
+}
+
+TASK [service-check-containers : Check containers that require iteration for fluentd] ***
+skipping: [localhost] => (item={'key': 'fluentd', 'value': {'container_name': 'fluentd', 'group': 'fluentd', 'enabled': True, 'image': 'quay.io/openstack.kolla/fluentd:2026.1-ubuntu-noble-aarch64', 'environment': {'KOLLA_CONFIG_STRATEGY': 'COPY_ALWAYS'}, 'volumes': ['/etc/kolla/fluentd/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'kolla_logs:/var/log/kolla/', 'fluentd_data:/var/lib/fluentd/data/', '/var/log/journal:/var/log/journal:ro'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost]
+
+TASK [fluentd : Flush handlers] ************************************************
+
+RUNNING HANDLER [fluentd : Restart fluentd container] **************************
+changed: [localhost]
+
+PLAY [Apply role loadbalancer] *************************************************
+
+TASK [loadbalancer : Include tasks for action deploy] **************************
+included: /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/loadbalancer/tasks/deploy.yml for localhost
+
+TASK [loadbalancer : Check IPv6 support] ***************************************
+ok: [localhost]
+
+TASK [Setting sysctl values] ***************************************************
+included: sysctl for localhost
+
+TASK [sysctl : Check IPv6 support] *********************************************
+ok: [localhost]
+
+TASK [sysctl : Setting sysctl values] ******************************************
+changed: [localhost] => (item={'name': 'net.ipv6.ip_nonlocal_bind', 'value': 1})
+changed: [localhost] => (item={'name': 'net.ipv4.ip_nonlocal_bind', 'value': 1})
+ok: [localhost] => (item={'name': 'net.ipv4.tcp_retries2', 'value': 'KOLLA_UNSET'})
+changed: [localhost] => (item={'name': 'net.unix.max_dgram_qlen', 'value': 128})
+
+TASK [module-load : Load modules] **********************************************
+changed: [localhost] => (item=ip_vs)
+
+TASK [module-load : Persist modules via modules-load.d] ************************
+changed: [localhost] => (item=ip_vs)
+
+TASK [module-load : Drop module persistence] ***********************************
+skipping: [localhost] => (item=ip_vs) 
+skipping: [localhost]
+
+TASK [loadbalancer : Ensuring config directories exist] ************************
+changed: [localhost] => (item={'key': 'haproxy', 'value': {'container_name': 'haproxy', 'group': 'loadbalancer', 'enabled': True, 'image': 'quay.io/openstack.kolla/haproxy:2026.1-ubuntu-noble-aarch64', 'privileged': True, 'volumes': ['/etc/kolla/haproxy/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'haproxy_socket:/var/lib/kolla/haproxy/', 'letsencrypt_certificates:/etc/haproxy/certificates'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': 30, 'retries': 3, 'start_period': 5, 'test': ['CMD-SHELL', 'healthcheck_curl http://192.168.64.2:61313'], 'timeout': 30}}})
+changed: [localhost] => (item={'key': 'proxysql', 'value': {'container_name': 'proxysql', 'group': 'loadbalancer', 'enabled': True, 'image': 'quay.io/openstack.kolla/proxysql:2026.1-ubuntu-noble-aarch64', 'privileged': False, 'volumes': ['/etc/kolla/proxysql/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'kolla_logs:/var/log/kolla/', 'proxysql:/var/lib/proxysql/', 'proxysql_socket:/var/lib/kolla/proxysql/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': 30, 'retries': 3, 'start_period': 5, 'test': ['CMD-SHELL', 'healthcheck_listen proxysql 6032'], 'timeout': 30}}})
+
+TASK [loadbalancer : Ensuring haproxy service config subdir exists] ************
+changed: [localhost]
+
+TASK [loadbalancer : Ensuring proxysql service config subdirectories exist] ****
+changed: [localhost] => (item=users)
+changed: [localhost] => (item=rules)
+
+TASK [loadbalancer : Ensuring keepalived checks subdir exists] *****************
+skipping: [localhost]
+
+TASK [loadbalancer : Check if separate database internal TLS CA certificate (proxysql-ca.pem) exists] ***
+ok: [localhost]
+
+TASK [loadbalancer : Remove mariadb.cfg if proxysql enabled] *******************
+skipping: [localhost]
+
+TASK [loadbalancer : Removing checks for services which are disabled] **********
+skipping: [localhost] => (item={'key': 'haproxy', 'value': {'container_name': 'haproxy', 'group': 'loadbalancer', 'enabled': True, 'image': 'quay.io/openstack.kolla/haproxy:2026.1-ubuntu-noble-aarch64', 'privileged': True, 'volumes': ['/etc/kolla/haproxy/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'haproxy_socket:/var/lib/kolla/haproxy/', 'letsencrypt_certificates:/etc/haproxy/certificates'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': 30, 'retries': 3, 'start_period': 5, 'test': ['CMD-SHELL', 'healthcheck_curl http://192.168.64.2:61313'], 'timeout': 30}}}) 
+skipping: [localhost] => (item={'key': 'proxysql', 'value': {'container_name': 'proxysql', 'group': 'loadbalancer', 'enabled': True, 'image': 'quay.io/openstack.kolla/proxysql:2026.1-ubuntu-noble-aarch64', 'privileged': False, 'volumes': ['/etc/kolla/proxysql/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'kolla_logs:/var/log/kolla/', 'proxysql:/var/lib/proxysql/', 'proxysql_socket:/var/lib/kolla/proxysql/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': 30, 'retries': 3, 'start_period': 5, 'test': ['CMD-SHELL', 'healthcheck_listen proxysql 6032'], 'timeout': 30}}}) 
+skipping: [localhost] => (item={'key': 'keepalived', 'value': {'container_name': 'keepalived', 'group': 'loadbalancer', 'enabled': False, 'image': 'quay.io/openstack.kolla/keepalived:2026.1-ubuntu-noble-aarch64', 'privileged': True, 'volumes': ['/etc/kolla/keepalived/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '/lib/modules:/lib/modules:ro', '', 'proxysql_socket:/var/lib/kolla/proxysql/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'haproxy-ssh', 'value': {'container_name': 'haproxy_ssh', 'group': 'loadbalancer', 'enabled': False, 'image': 'quay.io/openstack.kolla/haproxy-ssh:2026.1-ubuntu-noble-aarch64', 'volumes': ['/etc/kolla/haproxy-ssh/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'haproxy_socket:/var/lib/kolla/haproxy/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': 30, 'retries': 3, 'start_period': 5, 'test': ['CMD-SHELL', 'healthcheck_listen sshd 2985'], 'timeout': 30}}}) 
+skipping: [localhost]
+
+TASK [loadbalancer : Copying checks for services which are enabled] ************
+skipping: [localhost] => (item={'key': 'haproxy', 'value': {'container_name': 'haproxy', 'group': 'loadbalancer', 'enabled': True, 'image': 'quay.io/openstack.kolla/haproxy:2026.1-ubuntu-noble-aarch64', 'privileged': True, 'volumes': ['/etc/kolla/haproxy/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'haproxy_socket:/var/lib/kolla/haproxy/', 'letsencrypt_certificates:/etc/haproxy/certificates'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': 30, 'retries': 3, 'start_period': 5, 'test': ['CMD-SHELL', 'healthcheck_curl http://192.168.64.2:61313'], 'timeout': 30}}}) 
+skipping: [localhost] => (item={'key': 'proxysql', 'value': {'container_name': 'proxysql', 'group': 'loadbalancer', 'enabled': True, 'image': 'quay.io/openstack.kolla/proxysql:2026.1-ubuntu-noble-aarch64', 'privileged': False, 'volumes': ['/etc/kolla/proxysql/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'kolla_logs:/var/log/kolla/', 'proxysql:/var/lib/proxysql/', 'proxysql_socket:/var/lib/kolla/proxysql/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': 30, 'retries': 3, 'start_period': 5, 'test': ['CMD-SHELL', 'healthcheck_listen proxysql 6032'], 'timeout': 30}}}) 
+skipping: [localhost] => (item={'key': 'keepalived', 'value': {'container_name': 'keepalived', 'group': 'loadbalancer', 'enabled': False, 'image': 'quay.io/openstack.kolla/keepalived:2026.1-ubuntu-noble-aarch64', 'privileged': True, 'volumes': ['/etc/kolla/keepalived/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '/lib/modules:/lib/modules:ro', '', 'proxysql_socket:/var/lib/kolla/proxysql/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'haproxy-ssh', 'value': {'container_name': 'haproxy_ssh', 'group': 'loadbalancer', 'enabled': False, 'image': 'quay.io/openstack.kolla/haproxy-ssh:2026.1-ubuntu-noble-aarch64', 'volumes': ['/etc/kolla/haproxy-ssh/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'haproxy_socket:/var/lib/kolla/haproxy/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': 30, 'retries': 3, 'start_period': 5, 'test': ['CMD-SHELL', 'healthcheck_listen sshd 2985'], 'timeout': 30}}}) 
+skipping: [localhost]
+
+TASK [loadbalancer : Copying over config.json files for services] **************
+changed: [localhost] => (item={'key': 'haproxy', 'value': {'container_name': 'haproxy', 'group': 'loadbalancer', 'enabled': True, 'image': 'quay.io/openstack.kolla/haproxy:2026.1-ubuntu-noble-aarch64', 'privileged': True, 'volumes': ['/etc/kolla/haproxy/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'haproxy_socket:/var/lib/kolla/haproxy/', 'letsencrypt_certificates:/etc/haproxy/certificates'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': 30, 'retries': 3, 'start_period': 5, 'test': ['CMD-SHELL', 'healthcheck_curl http://192.168.64.2:61313'], 'timeout': 30}}})
+changed: [localhost] => (item={'key': 'proxysql', 'value': {'container_name': 'proxysql', 'group': 'loadbalancer', 'enabled': True, 'image': 'quay.io/openstack.kolla/proxysql:2026.1-ubuntu-noble-aarch64', 'privileged': False, 'volumes': ['/etc/kolla/proxysql/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'kolla_logs:/var/log/kolla/', 'proxysql:/var/lib/proxysql/', 'proxysql_socket:/var/lib/kolla/proxysql/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': 30, 'retries': 3, 'start_period': 5, 'test': ['CMD-SHELL', 'healthcheck_listen proxysql 6032'], 'timeout': 30}}})
+
+TASK [loadbalancer : Copying over haproxy.cfg] *********************************
+changed: [localhost] => (item=/home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/loadbalancer/templates/haproxy/haproxy_main.cfg.j2)
+
+TASK [loadbalancer : Copying over proxysql config] *****************************
+changed: [localhost] => (item=/home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/loadbalancer/templates/proxysql/proxysql.yaml.j2)
+
+TASK [loadbalancer : Copying over haproxy single external frontend config] *****
+skipping: [localhost]
+
+TASK [loadbalancer : Copying over custom haproxy services configuration] *******
+[WARNING]: Unable to find '/etc/kolla/config/haproxy/services.d' in expected paths (use -vvvvv to see paths)
+skipping: [localhost]
+
+TASK [loadbalancer : Copying over keepalived.conf] *****************************
+skipping: [localhost] => (item=/home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/loadbalancer/templates/keepalived/keepalived.conf.j2) 
+skipping: [localhost]
+
+TASK [loadbalancer : Copying over TLS certificates] ****************************
+skipping: [localhost]
+
+TASK [loadbalancer : Copying over haproxy start script] ************************
+changed: [localhost] => (item=/home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/loadbalancer/templates/haproxy/haproxy_run.sh.j2)
+
+TASK [loadbalancer : Copying over proxysql start script] ***********************
+changed: [localhost] => (item=/home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/loadbalancer/templates/proxysql/proxysql_run.sh.j2)
+
+TASK [loadbalancer : Copying files for haproxy-ssh] ****************************
+skipping: [localhost] => (item={'src': 'haproxy-ssh/sshd_config.j2', 'dest': 'sshd_config'}) 
+skipping: [localhost] => (item={'src': 'haproxy-ssh/id_rsa.pub', 'dest': 'id_rsa.pub'}) 
+skipping: [localhost]
+
+TASK [service-check-containers : Check containers for loadbalancer] ************
+changed: [localhost] => (item={'key': 'haproxy', 'value': {'container_name': 'haproxy', 'group': 'loadbalancer', 'enabled': True, 'image': 'quay.io/openstack.kolla/haproxy:2026.1-ubuntu-noble-aarch64', 'privileged': True, 'volumes': ['/etc/kolla/haproxy/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'haproxy_socket:/var/lib/kolla/haproxy/', 'letsencrypt_certificates:/etc/haproxy/certificates'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': 30, 'retries': 3, 'start_period': 5, 'test': ['CMD-SHELL', 'healthcheck_curl http://192.168.64.2:61313'], 'timeout': 30}}})
+changed: [localhost] => (item={'key': 'proxysql', 'value': {'container_name': 'proxysql', 'group': 'loadbalancer', 'enabled': True, 'image': 'quay.io/openstack.kolla/proxysql:2026.1-ubuntu-noble-aarch64', 'privileged': False, 'volumes': ['/etc/kolla/proxysql/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'kolla_logs:/var/log/kolla/', 'proxysql:/var/lib/proxysql/', 'proxysql_socket:/var/lib/kolla/proxysql/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': 30, 'retries': 3, 'start_period': 5, 'test': ['CMD-SHELL', 'healthcheck_listen proxysql 6032'], 'timeout': 30}}})
+
+TASK [service-check-containers : Notify handlers to restart containers for loadbalancer] ***
+changed: [localhost] => {
+    "msg": "Notifying handlers: Restart haproxy container,Restart proxysql container"
+}
+
+TASK [service-check-containers : Check containers that require iteration for loadbalancer] ***
+skipping: [localhost] => (item={'key': 'haproxy', 'value': {'container_name': 'haproxy', 'group': 'loadbalancer', 'enabled': True, 'image': 'quay.io/openstack.kolla/haproxy:2026.1-ubuntu-noble-aarch64', 'privileged': True, 'volumes': ['/etc/kolla/haproxy/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'haproxy_socket:/var/lib/kolla/haproxy/', 'letsencrypt_certificates:/etc/haproxy/certificates'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': 30, 'retries': 3, 'start_period': 5, 'test': ['CMD-SHELL', 'healthcheck_curl http://192.168.64.2:61313'], 'timeout': 30}}}) 
+skipping: [localhost] => (item={'key': 'proxysql', 'value': {'container_name': 'proxysql', 'group': 'loadbalancer', 'enabled': True, 'image': 'quay.io/openstack.kolla/proxysql:2026.1-ubuntu-noble-aarch64', 'privileged': False, 'volumes': ['/etc/kolla/proxysql/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'kolla_logs:/var/log/kolla/', 'proxysql:/var/lib/proxysql/', 'proxysql_socket:/var/lib/kolla/proxysql/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': 30, 'retries': 3, 'start_period': 5, 'test': ['CMD-SHELL', 'healthcheck_listen proxysql 6032'], 'timeout': 30}}}) 
+skipping: [localhost]
+
+TASK [Configure loadbalancer for aodh] *****************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for barbican] *************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for blazar] ***************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for ceph-rgw] *************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for cinder] ***************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for cloudkitty] ***********************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for cyborg] ***************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for designate] ************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for etcd] *****************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for glance] ***************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for gnocchi] **************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for grafana] **************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for heat] *****************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for horizon] **************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for ironic] ***************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for keystone] *************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for letsencrypt] **********************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for magnum] ***************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for manila] ***************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for mariadb] **************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for masakari] *************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for memcached] ************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for mistral] **************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for neutron] **************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for placement] ************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for nova] *****************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for nova-cell] ************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for octavia] **************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for opensearch] ***********************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for prometheus] ***********************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for rabbitmq] *************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for skyline] **************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for tacker] ***************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for trove] ****************************************
+skipping: [localhost]
+
+TASK [Configure loadbalancer for watcher] **************************************
+skipping: [localhost]
+
+TASK [Check loadbalancer containers] *******************************************
+skipping: [localhost]
+
+RUNNING HANDLER [loadbalancer : Check IP addresses on the API interface] *******
+ok: [localhost]
+
+RUNNING HANDLER [loadbalancer : Group HA nodes by status] **********************
+ok: [localhost]
+
+RUNNING HANDLER [loadbalancer : Stop backup haproxy container] *****************
+skipping: [localhost]
+
+RUNNING HANDLER [loadbalancer : Stop backup proxysql container] ****************
+skipping: [localhost]
+
+RUNNING HANDLER [loadbalancer : Start backup haproxy container] ****************
+skipping: [localhost]
+
+RUNNING HANDLER [loadbalancer : Start backup proxysql container] ***************
+skipping: [localhost]
+
+RUNNING HANDLER [loadbalancer : Stop master haproxy container] *****************
+ok: [localhost]
+
+RUNNING HANDLER [loadbalancer : Stop master proxysql container] ****************
+ok: [localhost]
+
+RUNNING HANDLER [loadbalancer : Start master haproxy container] ****************
+changed: [localhost]
+
+RUNNING HANDLER [loadbalancer : Wait for master haproxy to start] **************
+ok: [localhost]
+
+RUNNING HANDLER [loadbalancer : Start master proxysql container] ***************
+changed: [localhost]
+
+RUNNING HANDLER [loadbalancer : Wait for master proxysql to start] *************
+[WARNING]: Could not match supplied host pattern, ignoring: enable_opensearch_True
+[WARNING]: Could not match supplied host pattern, ignoring: enable_letsencrypt_True
+[WARNING]: Could not match supplied host pattern, ignoring: enable_collectd_True
+[WARNING]: Could not match supplied host pattern, ignoring: enable_valkey_True
+ok: [localhost]
+
+PLAY [Apply role opensearch] ***************************************************
+skipping: no hosts matched
+
+PLAY [Apply role letsencrypt] **************************************************
+skipping: no hosts matched
+
+PLAY [Apply role collectd] *****************************************************
+skipping: no hosts matched
+
+PLAY [Apply role valkey] *******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role mariadb] ******************************************************
+
+TASK [mariadb : Group MariaDB hosts based on shards] ***************************
+ok: [localhost] => (item=localhost)
+
+TASK [mariadb : Include tasks for action deploy] *******************************
+included: /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/mariadb/tasks/deploy.yml for localhost
+
+TASK [mariadb : Ensuring config directories exist] *****************************
+changed: [localhost] => (item={'key': 'mariadb', 'value': {'container_name': 'mariadb', 'group': 'mariadb_shard_0', 'enabled': True, 'image': 'quay.io/openstack.kolla/mariadb-server:2026.1-ubuntu-noble-aarch64', 'volumes': ['/etc/kolla/mariadb/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'mariadb:/var/lib/mysql', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': 30, 'retries': 3, 'start_period': 120, 'test': ['CMD-SHELL', '/usr/bin/healthcheck.sh --defaults-file /etc/mysql/healthcheck.cnf --connect --galera_online'], 'timeout': 30}, 'haproxy': {'mariadb_external_lb': {'enabled': False, 'mode': 'tcp', 'port': '3306', 'listen_port': '3306', 'frontend_tcp_extra': ['option clitcpka', 'timeout client 3600s'], 'backend_tcp_extra': ['option srvtcpka', 'timeout server 3600s'], 'custom_member_list': [' server localhost localhost:3306 check port 3306 inter 2000 rise 2 fall 5', '']}}}})
+
+TASK [mariadb : Ensuring database backup config directory exists] **************
+skipping: [localhost]
+
+TASK [mariadb : Copying over my.cnf for mariabackup] ***************************
+skipping: [localhost]
+
+TASK [mariadb : Check if custom wsrep-notify.sh exists] ************************
+ok: [localhost]
+
+TASK [mariadb : Copying over wsrep-notify.sh] **********************************
+skipping: [localhost]
+
+TASK [mariadb : Copying over config.json files for services] *******************
+changed: [localhost] => (item={'key': 'mariadb', 'value': {'container_name': 'mariadb', 'group': 'mariadb_shard_0', 'enabled': True, 'image': 'quay.io/openstack.kolla/mariadb-server:2026.1-ubuntu-noble-aarch64', 'volumes': ['/etc/kolla/mariadb/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'mariadb:/var/lib/mysql', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': 30, 'retries': 3, 'start_period': 120, 'test': ['CMD-SHELL', '/usr/bin/healthcheck.sh --defaults-file /etc/mysql/healthcheck.cnf --connect --galera_online'], 'timeout': 30}, 'haproxy': {'mariadb_external_lb': {'enabled': False, 'mode': 'tcp', 'port': '3306', 'listen_port': '3306', 'frontend_tcp_extra': ['option clitcpka', 'timeout client 3600s'], 'backend_tcp_extra': ['option srvtcpka', 'timeout server 3600s'], 'custom_member_list': [' server localhost localhost:3306 check port 3306 inter 2000 rise 2 fall 5', '']}}}})
+
+TASK [mariadb : Copying over config.json files for mariabackup] ****************
+skipping: [localhost]
+
+TASK [mariadb : Copying over galera.cnf] ***************************************
+changed: [localhost]
+
+TASK [mariadb : Copying over healthcheck.cnf] **********************************
+changed: [localhost]
+
+TASK [mariadb : Copying over TLS certificates] *********************************
+skipping: [localhost]
+
+TASK [service-check-containers : Check containers for mariadb] *****************
+changed: [localhost] => (item={'key': 'mariadb', 'value': {'container_name': 'mariadb', 'group': 'mariadb_shard_0', 'enabled': True, 'image': 'quay.io/openstack.kolla/mariadb-server:2026.1-ubuntu-noble-aarch64', 'volumes': ['/etc/kolla/mariadb/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'mariadb:/var/lib/mysql', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': 30, 'retries': 3, 'start_period': 120, 'test': ['CMD-SHELL', '/usr/bin/healthcheck.sh --defaults-file /etc/mysql/healthcheck.cnf --connect --galera_online'], 'timeout': 30}, 'haproxy': {'mariadb_external_lb': {'enabled': False, 'mode': 'tcp', 'port': '3306', 'listen_port': '3306', 'frontend_tcp_extra': ['option clitcpka', 'timeout client 3600s'], 'backend_tcp_extra': ['option srvtcpka', 'timeout server 3600s'], 'custom_member_list': [' server localhost localhost:3306 check port 3306 inter 2000 rise 2 fall 5', '']}}}})
+
+TASK [service-check-containers : Notify handlers to restart containers for mariadb] ***
+changed: [localhost] => {
+    "msg": "Notifying handlers: Restart mariadb container"
+}
+
+TASK [service-check-containers : Check containers that require iteration for mariadb] ***
+skipping: [localhost] => (item={'key': 'mariadb', 'value': {'container_name': 'mariadb', 'group': 'mariadb_shard_0', 'enabled': True, 'image': 'quay.io/openstack.kolla/mariadb-server:2026.1-ubuntu-noble-aarch64', 'volumes': ['/etc/kolla/mariadb/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'mariadb:/var/lib/mysql', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': 30, 'retries': 3, 'start_period': 120, 'test': ['CMD-SHELL', '/usr/bin/healthcheck.sh --defaults-file /etc/mysql/healthcheck.cnf --connect --galera_online'], 'timeout': 30}, 'haproxy': {'mariadb_external_lb': {'enabled': False, 'mode': 'tcp', 'port': '3306', 'listen_port': '3306', 'frontend_tcp_extra': ['option clitcpka', 'timeout client 3600s'], 'backend_tcp_extra': ['option srvtcpka', 'timeout server 3600s'], 'custom_member_list': [' server localhost localhost:3306 check port 3306 inter 2000 rise 2 fall 5', '']}}}}) 
+skipping: [localhost]
+
+TASK [mariadb : Checking for mariadb cluster] **********************************
+skipping: [localhost]
+
+TASK [mariadb : Cleaning up temp file on localhost] ****************************
+skipping: [localhost]
+
+TASK [mariadb : Stop MariaDB containers] ***************************************
+skipping: [localhost]
+
+TASK [mariadb : Run MariaDB wsrep recovery] ************************************
+skipping: [localhost]
+
+TASK [mariadb : Copying MariaDB log file to /tmp] ******************************
+skipping: [localhost]
+
+TASK [mariadb : Get MariaDB wsrep recovery seqno] ******************************
+skipping: [localhost]
+
+TASK [mariadb : Removing MariaDB log file from /tmp] ***************************
+skipping: [localhost]
+
+TASK [mariadb : Registering MariaDB seqno variable] ****************************
+skipping: [localhost]
+
+TASK [mariadb : Comparing seqno value on all mariadb hosts] ********************
+skipping: [localhost] => (item=localhost) 
+skipping: [localhost]
+
+TASK [mariadb : Writing hostname of host with the largest seqno to temp file] ***
+skipping: [localhost]
+
+TASK [mariadb : Registering mariadb_recover_inventory_name from temp file] *****
+skipping: [localhost]
+
+TASK [mariadb : Store bootstrap and master hostnames into facts] ***************
+skipping: [localhost]
+
+TASK [mariadb : Set grastate.dat file from MariaDB container in bootstrap host] ***
+skipping: [localhost]
+
+TASK [mariadb : Refresh galera.cnf to set first MariaDB container as primary] ***
+skipping: [localhost]
+
+TASK [mariadb : Starting first MariaDB container] ******************************
+skipping: [localhost]
+
+TASK [mariadb : Wait for first MariaDB container] ******************************
+skipping: [localhost]
+
+TASK [mariadb : Wait for MariaDB to become operational] ************************
+skipping: [localhost]
+
+TASK [mariadb : Restart slave MariaDB container(s)] ****************************
+skipping: [localhost] => (item={'key': 'mariadb', 'value': {'container_name': 'mariadb', 'group': 'mariadb_shard_0', 'enabled': True, 'image': 'quay.io/openstack.kolla/mariadb-server:2026.1-ubuntu-noble-aarch64', 'volumes': ['/etc/kolla/mariadb/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'mariadb:/var/lib/mysql', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': 30, 'retries': 3, 'start_period': 120, 'test': ['CMD-SHELL', '/usr/bin/healthcheck.sh --defaults-file /etc/mysql/healthcheck.cnf --connect --galera_online'], 'timeout': 30}, 'haproxy': {'mariadb_external_lb': {'enabled': False, 'mode': 'tcp', 'port': '3306', 'listen_port': '3306', 'frontend_tcp_extra': ['option clitcpka', 'timeout client 3600s'], 'backend_tcp_extra': ['option srvtcpka', 'timeout server 3600s'], 'custom_member_list': [' server localhost localhost:3306 check port 3306 inter 2000 rise 2 fall 5', '']}}}}) 
+skipping: [localhost]
+
+TASK [mariadb : Wait for slave MariaDB] ****************************************
+skipping: [localhost]
+
+TASK [mariadb : Wait for slave MariaDB to sync WSREP] **************************
+skipping: [localhost]
+
+TASK [mariadb : Unset pc.bootstrap for primary MariaDB galera.cnf for next restart] ***
+skipping: [localhost]
+
+TASK [mariadb : Restart master MariaDB container(s)] ***************************
+skipping: [localhost] => (item={'key': 'mariadb', 'value': {'container_name': 'mariadb', 'group': 'mariadb_shard_0', 'enabled': True, 'image': 'quay.io/openstack.kolla/mariadb-server:2026.1-ubuntu-noble-aarch64', 'volumes': ['/etc/kolla/mariadb/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'mariadb:/var/lib/mysql', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': 30, 'retries': 3, 'start_period': 120, 'test': ['CMD-SHELL', '/usr/bin/healthcheck.sh --defaults-file /etc/mysql/healthcheck.cnf --connect --galera_online'], 'timeout': 30}, 'haproxy': {'mariadb_external_lb': {'enabled': False, 'mode': 'tcp', 'port': '3306', 'listen_port': '3306', 'frontend_tcp_extra': ['option clitcpka', 'timeout client 3600s'], 'backend_tcp_extra': ['option srvtcpka', 'timeout server 3600s'], 'custom_member_list': [' server localhost localhost:3306 check port 3306 inter 2000 rise 2 fall 5', '']}}}}) 
+skipping: [localhost]
+
+TASK [mariadb : Wait for MariaDB] **********************************************
+skipping: [localhost]
+
+TASK [service-check : Get container facts for mariadb] *************************
+skipping: [localhost]
+
+TASK [service-check : Fail if containers are missing or not running for mariadb] ***
+skipping: [localhost]
+
+TASK [service-check : Fail if containers are unhealthy for mariadb] ************
+skipping: [localhost]
+
+TASK [mariadb : Wait for MariaDB service to be ready through VIP] **************
+skipping: [localhost]
+
+TASK [mariadb : Create MariaDB volume] *****************************************
+changed: [localhost]
+
+TASK [mariadb : Divide hosts by their MariaDB volume availability] *************
+ok: [localhost]
+
+TASK [mariadb : Establish whether the cluster has already existed] *************
+ok: [localhost]
+
+TASK [mariadb : Check MariaDB service port liveness] ***************************
+[ERROR]: Task failed: Module failed: Timeout when waiting for search string MariaDB in 192.168.64.2:3306
+Origin: /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/mariadb/tasks/lookup_cluster.yml:23:7
+
+21   when: not mariadb_recover | default(False)
+22   block:
+23     - name: Check MariaDB service port liveness
+         ^ column 7
+
+fatal: [localhost]: FAILED! => {"changed": false, "elapsed": 11, "msg": "Timeout when waiting for search string MariaDB in 192.168.64.2:3306"}
+...ignoring
+
+TASK [mariadb : Divide hosts by their MariaDB service port liveness] ***********
+ok: [localhost]
+
+TASK [mariadb : Fail on existing but stopped cluster] **************************
+skipping: [localhost]
+
+TASK [mariadb : Check MariaDB service WSREP sync status] ***********************
+skipping: [localhost]
+
+TASK [mariadb : Extract MariaDB service WSREP sync status] *********************
+skipping: [localhost]
+
+TASK [mariadb : Divide hosts by their MariaDB service WSREP sync status] *******
+ok: [localhost]
+
+TASK [mariadb : Fail when MariaDB services are not synced across the whole cluster] ***
+skipping: [localhost]
+
+TASK [mariadb : Include tasks from bootstrap_cluster.yml] **********************
+included: /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/mariadb/tasks/bootstrap_cluster.yml for localhost
+
+TASK [mariadb : Running MariaDB bootstrap container] ***************************
+changed: [localhost]
+
+TASK [mariadb : Store bootstrap host name into facts] **************************
+ok: [localhost]
+
+TASK [mariadb : Include tasks from recover_cluster.yml] ************************
+skipping: [localhost]
+
+RUNNING HANDLER [mariadb : Starting first MariaDB container] *******************
+changed: [localhost]
+
+RUNNING HANDLER [mariadb : Wait for first MariaDB service port liveness] *******
+FAILED - RETRYING: [localhost]: Wait for first MariaDB service port liveness (10 retries left).
+ok: [localhost]
+
+RUNNING HANDLER [mariadb : Wait for first MariaDB service to sync WSREP] *******
+[WARNING]: Deprecation warnings can be disabled by setting `deprecation_warnings=False` in ansible.cfg.
+[DEPRECATION WARNING]: Passing `deprecations` to `exit_json` or `fail_json` is deprecated. This feature will be removed from ansible-core version 2.23. Use `AnsibleModule.deprecate` instead.
+[DEPRECATION WARNING]: community.mysql.mysql_query has been deprecated. Use ansible.mysql.mysql_query instead. This feature will be removed from collection 'community.mysql' version 5.0.0.
+ok: [localhost]
+
+RUNNING HANDLER [mariadb : Ensure MariaDB is running normally on bootstrap host] ***
+changed: [localhost]
+
+RUNNING HANDLER [mariadb : Restart MariaDB on existing cluster members] ********
+skipping: [localhost]
+
+RUNNING HANDLER [mariadb : Start MariaDB on new nodes] *************************
+[WARNING]: Could not match supplied host pattern, ignoring: mariadb_restart
+[WARNING]: Could not match supplied host pattern, ignoring: mariadb_start
+skipping: [localhost]
+
+PLAY [Restart mariadb services] ************************************************
+skipping: no hosts matched
+
+PLAY [Start mariadb services] **************************************************
+skipping: no hosts matched
+
+PLAY [Restart bootstrap mariadb service] ***************************************
+
+TASK [mariadb : Restart MariaDB container] *************************************
+[ERROR]: Task failed: Module failed: 'Traceback (most recent call last):\n  File "/home/suphanatchanlek.guest/kolla-venv/lib/python3.12/site-packages/docker/api/client.py", line 275, in _raise_for_status\n    response.raise_for_status()\n  File "/home/suphanatchanlek.guest/kolla-venv/lib/python3.12/site-packages/requests/models.py", line 1167, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 409 Client Error: Conflict for url: http+docker://localhost/v1.56/containers/mariadb?v=False&link=False&force=True\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File "/tmp/ansible_kolla_container_payload_70_cakvh/ansible_kolla_container_payload.zip/ansible/legacy/kolla_container.py", line 421, in main\n    result = bool(getattr(cw, module.params.get(\'action\'))())\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/tmp/ansible_kolla_container_payload_70_cakvh/ansible_kolla_container_payload.zip/ansible/module_utils/kolla_docker_worker.py", line 376, in recreate_or_restart_container\n    self.remove_container()\n  File "/tmp/ansible_kolla_container_payload_70_cakvh/ansible_kolla_container_payload.zip/ansible/module_utils/kolla_docker_worker.py", line 247, in remove_container\n    self.dc.remove_container(\n  File "/home/suphanatchanlek.guest/kolla-venv/lib/python3.12/site-packages/docker/utils/decorators.py", line 19, in wrapped\n    return f(self, resource_id, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/home/suphanatchanlek.guest/kolla-venv/lib/python3.12/site-packages/docker/api/container.py", line 1037, in remove_container\n    self._raise_for_status(res)\n  File "/home/suphanatchanlek.guest/kolla-venv/lib/python3.12/site-packages/docker/api/client.py", line 277, in _raise_for_status\n    raise create_api_error_from_http_exception(e) from e\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/home/suphanatchanlek.guest/kolla-venv/lib/python3.12/site-packages/docker/errors.py", line 39, in create_api_error_from_http_exception\n    raise cls(e, response=response, explanation=explanation) from e\ndocker.errors.APIError: 409 Client Error for http+docker://localhost/v1.56/containers/mariadb?v=False&link=False&force=True: Conflict ("removal of container mariadb is already in progress")\n'
+Origin: /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/roles/mariadb/tasks/restart_services.yml:2:3
+
+1 ---
+2 - name: Restart MariaDB container
+    ^ column 3
+
+fatal: [localhost]: FAILED! => {"changed": true, "msg": "'Traceback (most recent call last):\\n  File \"/home/suphanatchanlek.guest/kolla-venv/lib/python3.12/site-packages/docker/api/client.py\", line 275, in _raise_for_status\\n    response.raise_for_status()\\n  File \"/home/suphanatchanlek.guest/kolla-venv/lib/python3.12/site-packages/requests/models.py\", line 1167, in raise_for_status\\n    raise HTTPError(http_error_msg, response=self)\\nrequests.exceptions.HTTPError: 409 Client Error: Conflict for url: http+docker://localhost/v1.56/containers/mariadb?v=False&link=False&force=True\\n\\nThe above exception was the direct cause of the following exception:\\n\\nTraceback (most recent call last):\\n  File \"/tmp/ansible_kolla_container_payload_70_cakvh/ansible_kolla_container_payload.zip/ansible/legacy/kolla_container.py\", line 421, in main\\n    result = bool(getattr(cw, module.params.get(\\'action\\'))())\\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \"/tmp/ansible_kolla_container_payload_70_cakvh/ansible_kolla_container_payload.zip/ansible/module_utils/kolla_docker_worker.py\", line 376, in recreate_or_restart_container\\n    self.remove_container()\\n  File \"/tmp/ansible_kolla_container_payload_70_cakvh/ansible_kolla_container_payload.zip/ansible/module_utils/kolla_docker_worker.py\", line 247, in remove_container\\n    self.dc.remove_container(\\n  File \"/home/suphanatchanlek.guest/kolla-venv/lib/python3.12/site-packages/docker/utils/decorators.py\", line 19, in wrapped\\n    return f(self, resource_id, *args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \"/home/suphanatchanlek.guest/kolla-venv/lib/python3.12/site-packages/docker/api/container.py\", line 1037, in remove_container\\n    self._raise_for_status(res)\\n  File \"/home/suphanatchanlek.guest/kolla-venv/lib/python3.12/site-packages/docker/api/client.py\", line 277, in _raise_for_status\\n    raise create_api_error_from_http_exception(e) from e\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \"/home/suphanatchanlek.guest/kolla-venv/lib/python3.12/site-packages/docker/errors.py\", line 39, in create_api_error_from_http_exception\\n    raise cls(e, response=response, explanation=explanation) from e\\ndocker.errors.APIError: 409 Client Error for http+docker://localhost/v1.56/containers/mariadb?v=False&link=False&force=True: Conflict (\"removal of container mariadb is already in progress\")\\n'"}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=86   changed=48   unreachable=0    failed=1    skipped=98   rescued=0    ignored=1   
+
+Kolla Ansible playbook(s) /home/suphanatchanlek.guest/kolla-venv/share/kolla-ansible/ansible/site.yml exited 2
